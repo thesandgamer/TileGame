@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include <vector>
 
+#include "Tile.h"
+
 class Grid
 {
 public:
@@ -21,7 +23,7 @@ public:
 	int CELL_WIDTH;
 	int CELL_HEIGHT;
 
-	std::vector<std::vector<Vector2>> grid;
+	std::vector<std::vector<Tile>> grid;
 
 	Grid& operator=(const Grid& other)
 	{

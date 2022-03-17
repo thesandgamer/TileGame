@@ -12,5 +12,17 @@ public:
 	int x;
 	int y;
 
+	bool traversible;
+
+	Tile& operator=(const Tile& other)
+	{
+		this->pos = other.pos;
+		this->x = other.x;
+		this->y = other.y;
+		this->traversible = other.traversible;
+
+		return *this;
+	}
+
 };
 
