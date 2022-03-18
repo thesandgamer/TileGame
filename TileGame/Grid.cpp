@@ -16,6 +16,8 @@ Grid::Grid(int width, int height, int cellWidth, int cellHeight) : GRID_WITH{ wi
 		{
 			Vector2 pos = { i,j };
 			grid[i][j].pos = pos;
+			grid[i][j].width = CELL_WIDTH;
+			grid[i][j].height = CELL_HEIGHT;
 		}
 	}
 }
@@ -43,15 +45,22 @@ void Grid::Draw()
 	{
 		for (Tile tile : ligne)
 		{
-			Color col = GRAY;
-			if (!tile.traversible)
-			{
-				col = BLACK;
-			}
-			DrawRectangle(tile.pos.x * CELL_WIDTH, tile.pos.y * CELL_HEIGHT, CELL_WIDTH-4, CELL_HEIGHT - 4, col);
+			tile.Draw();
 			DrawRectangleLines(tile.pos.x* CELL_WIDTH, tile.pos.y*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, WHITE);
 
 		}
 	}
 
+}
+
+bool Grid::IsInGrid(Vector2 pos)
+{
+	if (pos.x >= 0 && pos.y >= 0 && pos.x < GRID_WITH && pos.y < GRID_HEIGHT)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

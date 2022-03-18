@@ -11,9 +11,11 @@
     </ClCompile>
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Pawn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="Pawn.h" />
   </ItemGroup>
 </Project>

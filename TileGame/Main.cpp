@@ -6,6 +6,7 @@
 #include <string>
 
 #include "Grid.h"
+#include "Pawn.h"
 
 using namespace std;
 
@@ -49,16 +50,27 @@ int main(int argc, char* argv[])
 }
 
 Grid grid;
+Pawn pawn;
 
 void Start()
 {
-
     grid = Grid(10, 10,32,32);
-
+    pawn = Pawn({5,5}, 20, 20);
 }
 
 void Update()
 {
+    Vector2 mousePos = GetMousePosition();
+    Vector2 mousePosInGrid;
+    mousePosInGrid .x = mousePos.x / grid.CELL_WIDTH;
+    mousePosInGrid.y = mousePos.y / grid.CELL_HEIGHT;
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    {
+        if (grid.IsInGrid(mousePosInGrid))
+        {
+            grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
+        }
+    }
 
 }
 
@@ -68,6 +80,7 @@ void Draw()
     ClearBackground(BLACK);
 
     grid.Draw();
+    pawn.Draw();
 
     DrawUi();
     EndDrawing();

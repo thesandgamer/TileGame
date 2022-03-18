@@ -18,12 +18,14 @@ public:
 
 
 	int GRID_WITH;
-	int GRID_HEIGHT;	
+	int GRID_HEIGHT;
 	
 	int CELL_WIDTH;
 	int CELL_HEIGHT;
 
 	std::vector<std::vector<Tile>> grid;
+	
+	bool IsInGrid(Vector2 pos);
 
 	Grid& operator=(const Grid& other)
 	{
