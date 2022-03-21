@@ -170,8 +170,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Pawn.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
@@ -181,9 +185,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AStar.h" />
+    <ClInclude Include="AStartUtility.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Pawn.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="Vector2AStar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

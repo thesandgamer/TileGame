@@ -17,6 +17,7 @@ public:
 	float height;
 
 	bool traversible;
+	bool goal = false;
 
 	void Draw();
 
@@ -28,6 +29,7 @@ public:
 		this->width = other.width;
 		this->height = other.height;
 		this->traversible = other.traversible;
+		this->goal = other.goal;
 
 		return *this;
 	}

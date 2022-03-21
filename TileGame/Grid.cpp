@@ -20,10 +20,18 @@ Grid::Grid(int width, int height, int cellWidth, int cellHeight) : GRID_WITH{ wi
 			grid[i][j].height = CELL_HEIGHT;
 		}
 	}
+	aStar = AStar(GRID_WITH,GRID_HEIGHT);
 }
 
 Grid::Grid() 
 {
+	GRID_WITH = 0;
+	GRID_HEIGHT = 0;
+	CELL_WIDTH = 0;
+	CELL_HEIGHT = 0;
+
+	aStar = AStar(GRID_WITH, GRID_HEIGHT);
+
 }
 
 Grid::~Grid()

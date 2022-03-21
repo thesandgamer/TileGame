@@ -7,6 +7,7 @@
 
 #include "Grid.h"
 #include "Pawn.h"
+#include "AStar.h"
 
 using namespace std;
 
@@ -54,21 +55,40 @@ Pawn pawn;
 
 void Start()
 {
-    grid = Grid(10, 10,32,32);
+    const static int GRID_WIDTH = 10;
+    const static int GRID_HEIGHT = 10;
+
+    const static int CELL_WIDTH = 32;
+    const static int CELL_HEIGHT = 32;
+
+    grid = Grid(GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
     pawn = Pawn({5,5}, 20, 20);
+    pawn.gridRef = &grid;
 }
 
 void Update()
 {
     Vector2 mousePos = GetMousePosition();
     Vector2 mousePosInGrid;
-    mousePosInGrid .x = mousePos.x / grid.CELL_WIDTH;
-    mousePosInGrid.y = mousePos.y / grid.CELL_HEIGHT;
+    mousePosInGrid .x = round(mousePos.x / grid.CELL_WIDTH);
+    mousePosInGrid.y = round(mousePos.y / grid.CELL_HEIGHT);
+   // cout << mousePosInGrid.x << " " << mousePosInGrid.y << endl;
+    pawn.Update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         if (grid.IsInGrid(mousePosInGrid))
         {
             grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
+            grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+        }
+    }
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
+    {
+        if (grid.IsInGrid(mousePosInGrid))
+        {
+            pawn.MoveTo(Vector2AStar(mousePosInGrid.x, mousePosInGrid.y));
+            grid.grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
+
         }
     }
 

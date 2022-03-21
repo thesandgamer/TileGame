@@ -2,6 +2,11 @@
 #include "raylib.h"
 
 #include "Grid.h"
+#include "Vector2AStar.h"
+
+#include "easings.h"
+
+
 
 class Pawn
 {
@@ -12,14 +17,18 @@ public:
 	~Pawn();
 
 	void Draw();
+	void Update();
 		
-	Vector2 position;
+	Vector2AStar position;
 	float x;
 	float y;
 
 	float width;
 	float height;
 
-	void MoveTo(Vector2 positionToGo);
+	void MoveTo(Vector2AStar positionToGo);
+
+
+	Grid* gridRef;
 };
 

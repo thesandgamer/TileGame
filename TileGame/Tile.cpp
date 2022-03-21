@@ -31,5 +31,9 @@ void Tile::Draw()
 	{
 		col = BLACK;
 	}
+	else if (goal)
+	{
+		col = PURPLE;
+	}
 	DrawRectangle(pos.x * width, pos.y * height, width - 4, height - 4, col);
 }

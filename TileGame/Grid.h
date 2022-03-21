@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Tile.h"
+#include "AStar.h"
 
 class Grid
 {
@@ -24,6 +25,8 @@ public:
 	int CELL_HEIGHT;
 
 	std::vector<std::vector<Tile>> grid;
+
+	AStar aStar;
 	
 	bool IsInGrid(Vector2 pos);
 
@@ -34,6 +37,7 @@ public:
 		this->CELL_WIDTH = other.CELL_WIDTH;
 		this->CELL_HEIGHT = other.CELL_HEIGHT;
 		this->grid = other.grid;
+		this->aStar = other.aStar;
 		return* this;
 	}
 	

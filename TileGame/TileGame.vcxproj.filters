@@ -4,18 +4,63 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{E9C7FDCE-D52A-8D73-7EB0-C5296AF258F6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AStar">
+      <UniqueIdentifier>{11582c42-54b1-43fb-b347-9de8e137f2f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="Pawn.cpp" />
+    <ClCompile Include="AStar.cpp">
+      <Filter>AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pawn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="Tile.h" />
-    <ClInclude Include="Pawn.h" />
+    <ClInclude Include="AStar.h">
+      <Filter>AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2AStar.h">
+      <Filter>AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="AStartUtility.h">
+      <Filter>AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pawn.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
