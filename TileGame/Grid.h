@@ -27,8 +27,14 @@ public:
 	std::vector<std::vector<Tile>> grid;
 
 	AStar aStar;
+
+	Vector2 gridPosition;
 	
 	bool IsInGrid(Vector2 pos);
+
+	Vector2 PosInGrid(Vector2 pos);
+
+	void Debug_CleanPathVisibility();
 
 	Grid& operator=(const Grid& other)
 	{

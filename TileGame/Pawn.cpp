@@ -48,7 +48,7 @@ void Pawn::Draw()
 
 void Pawn::Update()
 {
-
+	/*
 	if (canMove)
 	{
 		int i = 0;
@@ -64,7 +64,7 @@ void Pawn::Update()
 		}
 		position.x += 0.1f;
 		position.y += 0.1f;
-		/*
+		q
 		int duration = 40;
 		int currentTime = 0;
 
@@ -77,15 +77,17 @@ void Pawn::Update()
 				currentTime++;
 
 			}
-		}*/
-	}
+		}
+	}*/
 }
 
 
 void Pawn::MoveTo(Vector2AStar positionToGo)
 {
+	//Si il n'y a pas de position à aller, finit
 	//Appel le A star
 	//std::vector<Vector2AStar> poses = gridRef->aStar.GetPath(position,positionToGo);
+	gridRef->Debug_CleanPathVisibility();
 	poses = gridRef->aStar.GetPath(position,positionToGo);
 	canMove = true;
 
@@ -101,14 +103,14 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 		//currentTime++;
 
 	}
-
+	*/
 	for (Vector2AStar posToGo : poses)
 	{
 		gridRef->grid[posToGo.x][posToGo.y].goal = true;
 		//x = posToGo.x;
-		//y = posToGo.y;
-		
+		//y = posToGo.y;<
 		std::cout << posToGo.x << " " << posToGo.y << std::endl;
+
 		/*
 		Vector2AStar actualPos = position;
 		float currentTime = 0;
@@ -117,10 +119,8 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 			position.x = EaseSineIn(currentTime, actualPos.x, posToGo.x - actualPos.x, 100);
 			position.y = EaseSineIn(currentTime, actualPos.y, posToGo.y - actualPos.y, 100);
 			currentTime++;
-			
+
 		}*/
-
-
 		/*
 		int currentTime = 0;
 		int duration = 400;
@@ -137,25 +137,26 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 		}
 		std::cout << "finish move" << std::endl;
 
-	
+
 		int currentTime = 0;
 		int duration = 40000;
 		float startPositionX = 0.0f;
 		float finalPositionX = 30.0f;
 		float currentPositionX = startPositionX;
-		
+
 		while (currentPositionX < finalPositionX)
 		{
 			//currentPositionX = EaseSineIn(currentTime, startPositionX, finalPositionX - startPositionX, duration);
 			currentPositionX += 0.1f;
 			//std::cout << currentPositionX << std::endl;
-			currentTime++;			
+			currentTime++;
 		}
 		std::cout << "FINISH" << std::endl;
 		x = posToGo.x;
 		y = posToGo.y;
-		
+
 		*/
+	}
 
 	//On va récupérer les positions données par le A* et les parcourir
 		//On va faire un lerp entre la position actuel et la position 

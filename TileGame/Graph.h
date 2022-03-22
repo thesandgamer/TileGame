@@ -27,6 +27,7 @@ public:
 
     void AddObstacles(std::vector<Vector2AStar> positions);
     void AddObstacle(Vector2AStar position);
+    void RemoveObstacle(Vector2AStar position);
 
 };
 

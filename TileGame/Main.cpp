@@ -69,17 +69,23 @@ void Start()
 void Update()
 {
     Vector2 mousePos = GetMousePosition();
-    Vector2 mousePosInGrid;
-    mousePosInGrid .x = round(mousePos.x / grid.CELL_WIDTH);
-    mousePosInGrid.y = round(mousePos.y / grid.CELL_HEIGHT);
+    Vector2 mousePosInGrid = grid.PosInGrid(mousePos);
    // cout << mousePosInGrid.x << " " << mousePosInGrid.y << endl;
     pawn.Update();
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         if (grid.IsInGrid(mousePosInGrid))
-        {
-            grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
-            grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+        {          
+            if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible)
+            {
+                grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
+                grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+            }
+            else
+            {
+                grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = true;
+                grid.aStar.aStarGrid.RemoveObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+            }
         }
     }
     if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))

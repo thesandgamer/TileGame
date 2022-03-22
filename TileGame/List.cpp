@@ -35,3 +35,8 @@ Node& List::FindLowestValue()
 {
     return *std::min_element(nodeList.begin(), nodeList.end());
 }
+
+void List::Clear()
+{
+    nodeList.clear();
+}

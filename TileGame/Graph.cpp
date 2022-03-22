@@ -95,3 +95,14 @@ void Graph::AddObstacle(Vector2AStar position)
 
     }
 }
+
+void Graph::RemoveObstacle(Vector2AStar position)
+{
+    auto it = find(graphNodes.begin(), graphNodes.end(), position);
+    if (it != graphNodes.end())
+    {
+        int index = distance(graphNodes.begin(), it);
+        graphNodes.at(index).traversable = true;
+
+    }
+}

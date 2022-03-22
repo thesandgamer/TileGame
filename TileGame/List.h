@@ -25,6 +25,8 @@ public:
 
     Node& FindLowestValue();
 
+    void Clear();
+
 
     //=============]Operators[======================//
 
