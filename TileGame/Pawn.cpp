@@ -45,8 +45,8 @@ void Pawn::Draw()
 	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 , position.y * gridRef->CELL_HEIGHT + height/4 ,width,height,YELLOW);
 }
 
-int currentTime = 0;
-int i = 0;
+int currentTime = 0; //Variable utilisé pour l'easing
+int positionIterator = 0;
 int duration = 40;
 
 void Pawn::Update()
@@ -54,20 +54,20 @@ void Pawn::Update()
 	
 	if (canMove)
 	{
-		Vector2AStar posToGo = poses[i];
+		Vector2AStar posToGo = poses[positionIterator];
 
-		if (position == posToGo)
+		if (position == posToGo)//Si on est arrivé à la position suivante
 		{
-			i++;
-			currentTime = 0;
+			positionIterator++;//On augmente l'iterator
+			currentTime = 0; //Et on reset le temps
 		}
 
-		position.x = EaseQuadInOut(currentTime, position.x, posToGo.x - position.x, duration);
-		position.y = EaseQuadInOut(currentTime, position.y, posToGo.y - position.y, duration);
+		position.x = EaseQuadInOut(currentTime, position.x, posToGo.x - position.x, duration);//On va au x suivant suivant un lerping
+		position.y = EaseQuadInOut(currentTime, position.y, posToGo.y - position.y, duration);//On va au y suivant suivant un lerping
 
-		currentTime++;
+		currentTime++; //Augmente le temps
 
-		if (i >= poses.size())
+		if (positionIterator >= poses.size()) //Si on est arrivé à la fin des position où aller
 		{
 			canMove = false;
 			return;
@@ -85,7 +85,7 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 	poses = gridRef->aStar.GetPath(position,positionToGo);
 	canMove = true;
 	currentTime = 0;
-	i = 0;
+	positionIterator = 0;
 
 	/*
 	Vector2AStar actualPos = position;
