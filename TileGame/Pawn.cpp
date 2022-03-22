@@ -42,43 +42,38 @@ std::vector<Vector2AStar> poses;
 
 void Pawn::Draw()
 {
-
 	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 , position.y * gridRef->CELL_HEIGHT + height/4 ,width,height,YELLOW);
 }
 
+int currentTime = 0;
+int i = 0;
+int duration = 40;
+
 void Pawn::Update()
 {
-	/*
+	
 	if (canMove)
 	{
-		int i = 0;
 		Vector2AStar posToGo = poses[i];
+
+		if (position == posToGo)
+		{
+			i++;
+			currentTime = 0;
+		}
+
+		position.x = EaseQuadInOut(currentTime, position.x, posToGo.x - position.x, duration);
+		position.y = EaseQuadInOut(currentTime, position.y, posToGo.y - position.y, duration);
+
+		currentTime++;
+
 		if (i >= poses.size())
 		{
 			canMove = false;
 			return;
 		}
-		if (position == posToGo)
-		{
-			i++;
-		}
-		position.x += 0.1f;
-		position.y += 0.1f;
-		q
-		int duration = 40;
-		int currentTime = 0;
-
-		for (Vector2AStar posToGo : poses)
-		{
-			while (position != posToGo)
-			{
-				position.x = EaseSineIn(currentTime, position.x, posToGo.x - position.x, duration);
-				position.y = EaseSineIn(currentTime, position.y, posToGo.y - position.y, duration);
-				currentTime++;
-
-			}
-		}
-	}*/
+		
+	}
 }
 
 
@@ -86,16 +81,18 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 {
 	//Si il n'y a pas de position à aller, finit
 	//Appel le A star
-	//std::vector<Vector2AStar> poses = gridRef->aStar.GetPath(position,positionToGo);
 	gridRef->Debug_CleanPathVisibility();
 	poses = gridRef->aStar.GetPath(position,positionToGo);
 	canMove = true;
+	currentTime = 0;
+	i = 0;
 
+	/*
 	Vector2AStar actualPos = position;
 	float currentTime = 0;
 	int duration = 400000;
 
-	/*
+	
 	while (position != positionToGo)
 	{
 		position.x += 0.1; //EaseSineIn(currentTime, actualPos.x, positionToGo.x - actualPos.x, duration);
@@ -104,6 +101,7 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 
 	}
 	*/
+	/*
 	for (Vector2AStar posToGo : poses)
 	{
 		gridRef->grid[posToGo.x][posToGo.y].goal = true;
@@ -111,16 +109,20 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 		//y = posToGo.y;<
 		std::cout << posToGo.x << " " << posToGo.y << std::endl;
 
-		/*
+		
 		Vector2AStar actualPos = position;
 		float currentTime = 0;
+		int duration = 400;
+
 		while (position != posToGo)
 		{
-			position.x = EaseSineIn(currentTime, actualPos.x, posToGo.x - actualPos.x, 100);
-			position.y = EaseSineIn(currentTime, actualPos.y, posToGo.y - actualPos.y, 100);
+			position.x = EaseSineIn(currentTime, actualPos.x, posToGo.x - actualPos.x, duration);
+			position.y = EaseSineIn(currentTime, actualPos.y, posToGo.y - actualPos.y, duration);
+			std::cout << "Position: " << position.x << " : " << position.y << std::endl;
 			currentTime++;
 
-		}*/
+		}
+		std::cout << "FInish " << std::endl;
 		/*
 		int currentTime = 0;
 		int duration = 400;
@@ -155,8 +157,8 @@ void Pawn::MoveTo(Vector2AStar positionToGo)
 		x = posToGo.x;
 		y = posToGo.y;
 
-		*/
-	}
+		
+	}*/
 
 	//On va récupérer les positions données par le A* et les parcourir
 		//On va faire un lerp entre la position actuel et la position 
