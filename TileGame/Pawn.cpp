@@ -6,7 +6,7 @@ Pawn::Pawn()
 	position = { -1, -1 };
 	x = -1;
 	y = -1;
-	gridRef = new Grid();
+	gridRef = nullptr;
 
 }
 
@@ -42,7 +42,7 @@ std::vector<Vector2AStar> poses;
 
 void Pawn::Draw()
 {
-	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 , position.y * gridRef->CELL_HEIGHT + height/4 ,width,height,YELLOW);
+	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 + gridRef->GetGridPos().x , position.y * gridRef->CELL_HEIGHT + height/4 + gridRef->GetGridPos().y,width,height,YELLOW);
 }
 
 int currentTime = 0; //Variable utilisé pour l'easing

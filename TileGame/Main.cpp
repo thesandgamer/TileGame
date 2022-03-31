@@ -60,8 +60,9 @@ void Start()
 
     const static int CELL_WIDTH = 32;
     const static int CELL_HEIGHT = 32;
+    Vector2 gridPos = { SCREEN_WIDTH / 2 - (GRID_WIDTH * CELL_WIDTH)/2 ,SCREEN_HEIGHT / 2 - (GRID_HEIGHT * CELL_HEIGHT )/2 };
 
-    grid = Grid(GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+    grid = Grid(gridPos,GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
     pawn = Pawn({5,5}, 20, 20);
     pawn.gridRef = &grid;
 }
@@ -72,6 +73,7 @@ void Update()
     Vector2 mousePosInGrid = grid.PosInGrid(mousePos);
    // cout << mousePosInGrid.x << " " << mousePosInGrid.y << endl;
     pawn.Update();
+    grid.IsInGrid(mousePosInGrid);
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         if (grid.IsInGrid(mousePosInGrid))
@@ -90,10 +92,13 @@ void Update()
     }
     if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
     {
-        if (grid.IsInGrid(mousePosInGrid))
+        if (grid.IsInGrid(mousePosInGrid) )
         {
-            pawn.MoveTo(Vector2AStar(mousePosInGrid.x, mousePosInGrid.y));
-            grid.grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
+            if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible == true)
+            {
+                pawn.MoveTo(Vector2AStar(mousePosInGrid.x, mousePosInGrid.y));
+                grid.grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
+            }
 
         }
     }

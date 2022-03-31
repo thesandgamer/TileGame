@@ -1,8 +1,7 @@
 #include "Grid.h"
 
-Grid::Grid(int width, int height, int cellWidth, int cellHeight) : GRID_WITH{ width }, GRID_HEIGHT{ height }, CELL_WIDTH{ cellWidth },CELL_HEIGHT{cellHeight}
+Grid::Grid(Vector2 pos,int width, int height, int cellWidth, int cellHeight) :gridPosition(pos), GRID_WITH{ width }, GRID_HEIGHT{ height }, CELL_WIDTH{ cellWidth },CELL_HEIGHT{cellHeight}
 {
-	gridPosition = { 0,0 };
 	grid.resize(GRID_WITH);
 	for (std::vector<Tile>& i : grid)
 	{
@@ -10,6 +9,7 @@ Grid::Grid(int width, int height, int cellWidth, int cellHeight) : GRID_WITH{ wi
 	}
 	std::cout << "Grid finish to resize" << std::endl;
 
+	//Set la graph de A*
 	for ( int i = 0; i < grid.size();i++ )
 	{
 		for ( int j = 0; j < grid[i].size(); j++ )
@@ -18,6 +18,8 @@ Grid::Grid(int width, int height, int cellWidth, int cellHeight) : GRID_WITH{ wi
 			grid[i][j].pos = pos;
 			grid[i][j].width = CELL_WIDTH;
 			grid[i][j].height = CELL_HEIGHT;
+			grid[i][j].refToGrid = this;
+
 		}
 	}
 	aStar = AStar(GRID_WITH,GRID_HEIGHT);
@@ -64,12 +66,16 @@ void Grid::Draw()
 
 bool Grid::IsInGrid(Vector2 pos)
 {
-	if (pos.x >= 0 && pos.y >= 0 && pos.x < GRID_WITH && pos.y < GRID_HEIGHT)
+	if (pos.x >= 0
+		&& pos.y  >= 0
+			&& pos.x < ( GRID_WITH   ) 
+			&& pos.y < ( GRID_HEIGHT  ))
 	{
 		return true;
 	}
 	else
 	{
+
 		return false;
 	}
 }
@@ -79,8 +85,10 @@ bool Grid::IsInGrid(Vector2 pos)
 Vector2 Grid::PosInGrid(Vector2 pos)
 {
 	Vector2 newPos;
-	newPos.x = (int)pos.x / CELL_WIDTH + gridPosition.x;
-	newPos.y = (int)pos.y / CELL_HEIGHT + gridPosition.y;
+	newPos.x = (int) (( ( pos.x  -gridPosition.x)/ CELL_WIDTH));
+	newPos.y = (int) (( (pos.y - gridPosition.y) / CELL_HEIGHT));
+
+	//std::cout << "Pos in grid: " << newPos.x << " " << newPos.y << std::endl;
 
 	return newPos;
 }

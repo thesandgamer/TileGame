@@ -9,7 +9,7 @@
 class Grid
 {
 public:
-	Grid(int width, int height, int cellWidth,int cellHeight);
+	Grid(Vector2 pos ,int width, int height, int cellWidth,int cellHeight);
 	Grid();
 	~Grid();
 
@@ -28,7 +28,7 @@ public:
 
 	AStar aStar;
 
-	Vector2 gridPosition;
+	Vector2 GetGridPos() { return gridPosition; }
 	
 	bool IsInGrid(Vector2 pos);
 
@@ -44,8 +44,13 @@ public:
 		this->CELL_HEIGHT = other.CELL_HEIGHT;
 		this->grid = other.grid;
 		this->aStar = other.aStar;
+		this->gridPosition = other.gridPosition;
 		return* this;
 	}
+
+private:
+	Vector2 gridPosition;
+
 	
 };
 

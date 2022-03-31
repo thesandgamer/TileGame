@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include "Grid.h"
 
 Tile::Tile()
 {
@@ -35,5 +36,5 @@ void Tile::Draw()
 	{
 		col = PURPLE;
 	}
-	DrawRectangle(pos.x * width, pos.y * height, width - 4, height - 4, col);
+	DrawRectangle(pos.x * width + refToGrid->GetGridPos().x , pos.y * height + refToGrid->GetGridPos().y, width - 4, height - 4, col);
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "raylib.h"
 
+class Grid;
+
 class Tile
 {
 public:
@@ -18,6 +20,8 @@ public:
 
 	bool traversible;
 	bool goal = false;
+
+	Grid* refToGrid;
 
 	void Draw();
 
