@@ -76,12 +76,13 @@ void Update()
     grid.IsInGrid(mousePosInGrid);
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
+        
         if (grid.IsInGrid(mousePosInGrid))
         {          
             if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible)
             {
                 grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
-                grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+                //grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
             }
             else
             {
@@ -96,6 +97,7 @@ void Update()
         {
             if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible == true)
             {
+                std::cout << "traversible" << std::endl;
                 pawn.MoveTo(Vector2AStar(mousePosInGrid.x, mousePosInGrid.y));
                 grid.grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
             }

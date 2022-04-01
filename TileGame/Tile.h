@@ -37,7 +37,8 @@ public:
 		this->refToGrid = other.refToGrid;
 
 		return *this;
-	}
+	}	
+
 
 };
 
