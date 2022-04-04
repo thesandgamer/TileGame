@@ -14,10 +14,7 @@ Grid::Grid(Vector2 pos,int width, int height, int cellWidth, int cellHeight) :gr
 	{
 		for ( int j = 0; j < grid[i].size(); j++ )
 		{
-			Vector2 pos = { i,j };
-			grid[i][j].pos = pos;
-			grid[i][j].width = CELL_WIDTH;
-			grid[i][j].height = CELL_HEIGHT;
+			grid[i][j] = Tile(i, j, CELL_WIDTH, CELL_HEIGHT);
 			grid[i][j].refToGrid = this;
 
 		}
@@ -81,7 +78,7 @@ bool Grid::IsInGrid(Vector2 pos)
 }
 
 
-//Peut peut être être fait en mettant un pointeur et changeant la valeur
+//Peut peut Ãªtre Ãªtre fait en mettant un pointeur et changeant la valeur
 Vector2 Grid::PosInGrid(Vector2 pos)
 {
 	Vector2 newPos;
