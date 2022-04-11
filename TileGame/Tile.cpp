@@ -3,6 +3,7 @@
 
 Tile::Tile()
 {
+	refToGrid = nullptr;
 }
 
 Tile::Tile(int xP, int yP): x{xP}, y{yP}
@@ -12,6 +13,8 @@ Tile::Tile(int xP, int yP): x{xP}, y{yP}
 	pos.x = xP;
 	pos.y = yP;
 	traversible = true;
+	refToGrid = nullptr;
+
 }
 
 Tile::Tile(int xP, int yP, float widthP, float heightP)
@@ -23,6 +26,8 @@ Tile::Tile(int xP, int yP, float widthP, float heightP)
 	width = widthP;
 	height = heightP;
 	traversible = true;
+	refToGrid = nullptr;
+
 }
 
 void Tile::Draw()

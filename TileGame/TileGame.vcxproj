@@ -171,6 +171,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="List.cpp" />
@@ -187,6 +188,7 @@
   <ItemGroup>
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStartUtility.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="List.h" />

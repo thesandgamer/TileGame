@@ -2,24 +2,7 @@
 
 Grid::Grid(Vector2 pos,int width, int height, int cellWidth, int cellHeight) :gridPosition(pos), GRID_WITH{ width }, GRID_HEIGHT{ height }, CELL_WIDTH{ cellWidth },CELL_HEIGHT{cellHeight}
 {
-	grid.resize(GRID_WITH);
-	for (std::vector<Tile>& i : grid)
-	{
-		i.resize(GRID_HEIGHT);
-	}
-	std::cout << "Grid finish to resize" << std::endl;
-
-	//Set la graph de A*
-	for ( int i = 0; i < grid.size();i++ )
-	{
-		for ( int j = 0; j < grid[i].size(); j++ )
-		{
-			grid[i][j] = Tile(i, j, CELL_WIDTH, CELL_HEIGHT);
-			grid[i][j].refToGrid = this;
-
-		}
-	}
-	aStar = AStar(GRID_WITH,GRID_HEIGHT);
+	
 }
 
 Grid::Grid() 
@@ -30,7 +13,8 @@ Grid::Grid()
 	CELL_HEIGHT = 0;
 	gridPosition = { 0,0 };	
 
-	aStar = AStar(GRID_WITH, GRID_HEIGHT);
+	//aStar = 
+
 
 }
 
@@ -40,7 +24,25 @@ Grid::~Grid()
 
 void Grid::Start()
 {
+	grid.resize(GRID_WITH);
+	for (std::vector<Tile>& i : grid)
+	{
+		i.resize(GRID_HEIGHT);
+	}
+	std::cout << "Grid finish to resize" << std::endl;
 
+
+	for (int i = 0; i < grid.size(); i++)
+	{
+		for (int j = 0; j < grid[i].size(); j++)
+		{
+			grid[i][j] = Tile(i, j, CELL_WIDTH, CELL_HEIGHT);
+			grid[i][j].refToGrid = this;
+
+		}
+	}
+	//Set la graph de A*
+	aStar = AStar(GRID_WITH, GRID_HEIGHT);
 }
 
 void Grid::Update()

@@ -8,6 +8,7 @@
 #include "Grid.h"
 #include "Pawn.h"
 #include "AStar.h"
+#include "Button.h"
 
 using namespace std;
 
@@ -20,6 +21,9 @@ void Start();
 //Setup la taille de l'écran
 int const SCREEN_WIDTH = 960;
 int const SCREEN_HEIGHT = 540;
+
+Grid grid;
+Pawn pawn;
 
 int main(int argc, char* argv[])
 {
@@ -40,6 +44,7 @@ int main(int argc, char* argv[])
         Update();
         // Draw
         Draw();       
+        DrawUi();
 
     }
 
@@ -50,8 +55,7 @@ int main(int argc, char* argv[])
 
 }
 
-Grid grid;
-Pawn pawn;
+Button* endTurnButton;
 
 void Start()
 {
@@ -63,8 +67,14 @@ void Start()
     Vector2 gridPos = { SCREEN_WIDTH / 2 - (GRID_WIDTH * CELL_WIDTH)/2 ,SCREEN_HEIGHT / 2 - (GRID_HEIGHT * CELL_HEIGHT )/2 };
 
     grid = Grid(gridPos,GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+    grid.Start();
+
     pawn = Pawn({5,5}, 20, 20);
     pawn.gridRef = &grid;
+
+    endTurnButton = new Button({10,10}, 40.0f, 40.0f);
+    endTurnButton->textInButton = "End Turn";
+
 }
 
 void Update()
@@ -74,6 +84,8 @@ void Update()
    // cout << mousePosInGrid.x << " " << mousePosInGrid.y << endl;
     pawn.Update();
     grid.IsInGrid(mousePosInGrid);
+    /*   ======== Remove/replace Tiles ===========
+    * 
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
     {
         
@@ -82,7 +94,7 @@ void Update()
             if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible)
             {
                 grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
-                //grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+                grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
             }
             else
             {
@@ -90,7 +102,7 @@ void Update()
                 grid.aStar.aStarGrid.RemoveObstacle({ mousePosInGrid.x,mousePosInGrid.y });
             }
         }
-    }
+    }*/
     if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
     {
         if (grid.IsInGrid(mousePosInGrid) )
@@ -104,6 +116,9 @@ void Update()
 
         }
     }
+    
+    endTurnButton->Update();
+
 
 }
 
@@ -121,5 +136,6 @@ void Draw()
 
 void DrawUi()
 {
+    endTurnButton->Draw();
 
 }
