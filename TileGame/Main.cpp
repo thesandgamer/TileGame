@@ -10,6 +10,8 @@
 #include "AStar.h"
 #include "Button.h"
 
+#include "InformationDisplayUi.h"
+
 using namespace std;
 
 //Editor Variable
@@ -56,6 +58,8 @@ int main(int argc, char* argv[])
 }
 
 Button* endTurnButton;
+InformationDisplayUi* infoUi;
+std::vector<InformationDisplay*> informations;
 
 void Start()
 {
@@ -74,6 +78,12 @@ void Start()
 
     endTurnButton = new Button({10,10}, 40.0f, 40.0f);
     endTurnButton->textInButton = "End Turn";
+
+    infoUi = new InformationDisplayUi();
+    infoUi->SetPosition({ SCREEN_WIDTH- SCREEN_WIDTH/3,0 });
+    infoUi->infoLinkedTo = pawn.GetInformations();
+
+
 
 }
 
@@ -103,6 +113,16 @@ void Update()
             }
         }
     }*/
+
+    if (grid.IsInGrid(mousePosInGrid))
+    {
+        informations.push_back(pawn.GetInformations());
+
+        //On va récupérer ce qu'il y a en dessous de la souris, tile, pawn, ennemi,...: tout ce qui possède l'infomationDisplay
+        //On va passer l'information display du truc pointé dans l'ui inforamtion display
+
+    }
+
     if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
     {
         if (grid.IsInGrid(mousePosInGrid) )
@@ -137,5 +157,7 @@ void Draw()
 void DrawUi()
 {
     endTurnButton->Draw();
+    infoUi->Draw();
+
 
 }

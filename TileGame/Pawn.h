@@ -3,6 +3,7 @@
 
 #include "Grid.h"
 #include "Vector2AStar.h"
+#include "InformationDisplay.h"
 
 #include "easings.h"
 
@@ -16,6 +17,7 @@ public:
 	Pawn(Vector2 positionP,float widthP,float heightP);
 	~Pawn();
 
+	void Init();
 	void Draw();
 	void Update();
 		
@@ -28,7 +30,12 @@ public:
 
 	void MoveTo(Vector2AStar positionToGo);
 
+	InformationDisplay* GetInformations() { return informations; }
 
 	Grid* gridRef;
+
+private:
+	InformationDisplay* informations;
+
 };
 

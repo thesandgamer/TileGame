@@ -7,6 +7,7 @@ Pawn::Pawn()
 	x = -1;
 	y = -1;
 	gridRef = nullptr;
+	informations = nullptr;
 
 }
 
@@ -17,6 +18,8 @@ Pawn::Pawn(Vector2 positionP)
 	x = positionP.x;
 	y = positionP.y;
 	//gridRef = new Grid();
+	Init();
+
 
 }
 
@@ -29,6 +32,7 @@ Pawn::Pawn(Vector2 positionP, float widthP, float heightP)
 	width = widthP;
 	height = heightP;
 	//gridRef = new Grid();
+	Init();
 
 
 }
@@ -39,6 +43,15 @@ Pawn::~Pawn()
 
 bool canMove;
 std::vector<Vector2AStar> poses;
+
+void Pawn::Init()
+{
+	informations = new InformationDisplay("Je suis le joueur");
+	Vector2* pos;
+	pos->x = &position.x;
+	pos->y = &position.x;
+	informations->SetPos(pos);
+}
 
 void Pawn::Draw()
 {

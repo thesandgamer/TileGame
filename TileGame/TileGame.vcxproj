@@ -174,6 +174,8 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="InformationDisplay.cpp" />
+    <ClCompile Include="InformationDisplayUi.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -191,6 +193,8 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="InformationDisplay.h" />
+    <ClInclude Include="InformationDisplayUi.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Pawn.h" />
