@@ -79,5 +79,6 @@
     <ClInclude Include="Button.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="IInformationPasseur.h" />
   </ItemGroup>
 </Project>

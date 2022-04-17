@@ -193,6 +193,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="IInformationPasseur.h" />
     <ClInclude Include="InformationDisplay.h" />
     <ClInclude Include="InformationDisplayUi.h" />
     <ClInclude Include="List.h" />

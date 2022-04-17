@@ -12,7 +12,7 @@ public:
 
 };
 
-static const double CalculateHeuristic(Vector2AStar posA, Vector2AStar posB)
+static const double CalculateHeuristic(Vector2 posA, Vector2 posB)
 {
 
     double dx = abs(posA.x - posB.x);
@@ -24,7 +24,7 @@ static const double CalculateHeuristic(Vector2AStar posA, Vector2AStar posB)
     return heuritic;
 }
 
-static const double CalculateFCostOfNode(Vector2AStar currentNode, Vector2AStar startNode, Vector2AStar goalNode)
+static const double CalculateFCostOfNode(Vector2 currentNode, Vector2 startNode, Vector2 goalNode)
 {
     //1) Calcul du g cost: Distance du node par rapport au départ(quand diagonal vaut 14, quand droit vaut 10, pour un déplacement de case)
     double gCost = CalculateHeuristic(currentNode, startNode);

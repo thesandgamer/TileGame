@@ -2,7 +2,7 @@
 
 Node::Node()
 {   
-    positon = Vector2AStar(-1, -1);
+    positon = {-1,-1};
     x = -1;
     y = -1;
     cameFrom = nullptr;
@@ -11,7 +11,7 @@ Node::Node()
     
 }
 
-Node::Node(Vector2AStar positionP) : positon(positionP)
+Node::Node(Vector2 positionP) : positon(positionP)
 { 
     x = positon.x;
     y = positon.y;

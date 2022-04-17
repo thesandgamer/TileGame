@@ -4,6 +4,7 @@
 #include <math.h> 
 #include <vector>
 #include <string>
+#include <map>
 
 #include "Grid.h"
 #include "Pawn.h"
@@ -59,7 +60,8 @@ int main(int argc, char* argv[])
 
 Button* endTurnButton;
 InformationDisplayUi* infoUi;
-std::vector<InformationDisplay*> informations;
+//map<Vector2*,InformationDisplay*> informations;
+vector<InformationDisplay*> informations;
 
 void Start()
 {
@@ -75,14 +77,16 @@ void Start()
 
     pawn = Pawn({5,5}, 20, 20);
     pawn.gridRef = &grid;
+    pawn.Init();
 
     endTurnButton = new Button({10,10}, 40.0f, 40.0f);
     endTurnButton->textInButton = "End Turn";
 
     infoUi = new InformationDisplayUi();
     infoUi->SetPosition({ SCREEN_WIDTH- SCREEN_WIDTH/3,0 });
-    infoUi->infoLinkedTo = pawn.GetInformations();
 
+    //informations.insert({ &pawn.position,pawn.GetInformations() });
+    informations.push_back(pawn.GetInformations());
 
 
 }
@@ -116,10 +120,23 @@ void Update()
 
     if (grid.IsInGrid(mousePosInGrid))
     {
-        informations.push_back(pawn.GetInformations());
-
         //On va récupérer ce qu'il y a en dessous de la souris, tile, pawn, ennemi,...: tout ce qui possède l'infomationDisplay
         //On va passer l'information display du truc pointé dans l'ui inforamtion display
+
+        for (InformationDisplay* inf : informations)
+        {
+            if (inf->GetPos().x == mousePosInGrid.x && inf->GetPos().y == mousePosInGrid.y)
+            {
+                //Quand on est sur l'info display, faire en sorte d'appeler la fonction pour setup le texte
+                inf->infPasseur->GetInformationOf();
+                infoUi->infoLinkedTo = inf;
+            }
+            else
+            {
+                infoUi->infoLinkedTo = nullptr;
+            }
+        }
+       // infoUi->infoLinkedTo = pawn.GetInformations();
 
     }
 
@@ -130,7 +147,7 @@ void Update()
             if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible == true)
             {
                 std::cout << "traversible" << std::endl;
-                pawn.MoveTo(Vector2AStar(mousePosInGrid.x, mousePosInGrid.y));
+                pawn.MoveTo({ mousePosInGrid.x, mousePosInGrid.y });
                 grid.grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
             }
 

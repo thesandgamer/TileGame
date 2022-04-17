@@ -5,7 +5,7 @@ Graph::Graph(int width, int height) : graphWidth(width), graphHeight(height) {
     {
         for (int yy = 0; yy < height; yy++)//Colognes
         {
-            graphNodes.push_back(Node(Vector2AStar(xx, yy)));
+            graphNodes.push_back(Node({ (float)xx, (float)yy }));
         }
     }
 }
@@ -31,7 +31,7 @@ double Graph::GetCostOfNode(Node current, Node next)
     return -1;
 }
 
-Node& Graph::GetNode(Vector2AStar node)
+Node& Graph::GetNode(Vector2 node)
 {
     auto it = find(graphNodes.begin(), graphNodes.end(), node);
     if (it != graphNodes.end())
@@ -66,7 +66,7 @@ std::vector<Node> Graph::GetAroundNodes(Node current)
             if (xx == 0 && yy == 0) continue;
             if (current.x + xx >= 0 && current.x + xx < graphWidth && current.y + yy >= 0 && current.y + yy < graphHeight) //Check si on est dans la grille
             {
-                Node newNode = GetNode(Vector2AStar(current.x + xx, current.y + yy));// Node(Vector2(current.x + xx, current.y + yy));
+                Node newNode = GetNode({current.x + (float)xx, current.y + (float)yy });// Node(Vector2(current.x + xx, current.y + yy));
                 nodes.push_back(newNode);
                 i++;
             }
@@ -77,15 +77,15 @@ std::vector<Node> Graph::GetAroundNodes(Node current)
     return nodes;
 }
 
-void Graph::AddObstacles(std::vector<Vector2AStar> positions)
+void Graph::AddObstacles(std::vector<Vector2> positions)
 {
-    for (Vector2AStar pos : positions)
+    for (Vector2 pos : positions)
     {
         AddObstacle(pos);
     }
 }
 
-void Graph::AddObstacle(Vector2AStar position)
+void Graph::AddObstacle(Vector2 position)
 {
     auto it = find(graphNodes.begin(), graphNodes.end(), position);
     if (it != graphNodes.end())
@@ -96,7 +96,7 @@ void Graph::AddObstacle(Vector2AStar position)
     }
 }
 
-void Graph::RemoveObstacle(Vector2AStar position)
+void Graph::RemoveObstacle(Vector2 position)
 {
     auto it = find(graphNodes.begin(), graphNodes.end(), position);
     if (it != graphNodes.end())

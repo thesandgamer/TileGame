@@ -5,12 +5,12 @@ class Node
 {
 public:
     //=========================]Constructeurs[=========================//
-    Node(Vector2AStar positionP);
+    Node(Vector2 positionP);
     Node();
     ~Node();
 
     //=========================]Variables[=========================//
-    Vector2AStar positon;
+    Vector2 positon;
     int x;
     int y;
     double cost;
@@ -21,12 +21,12 @@ public:
     //=========================] OPERATORS[=========================//
     bool operator ==(const Node& other)
     {
-        if (this->positon == other.positon) return true;
+        if (this->positon.x == other.positon.x && this->positon.y == other.positon.y) return true;
         return false;
     }
     bool operator !=(const Node& other)
     {
-        if (this->positon == other.positon) return false;
+        if (this->positon.x == other.positon.x && this->positon.y == other.positon.y) return false;
         return true;
     }
 

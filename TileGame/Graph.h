@@ -19,15 +19,15 @@ public:
 
     double GetCostOfNode(Node current, Node  next);
 
-    Node& GetNode(Vector2AStar node);
+    Node& GetNode(Vector2 node);
     Node& GetNode(Node& node);
 
 
     std::vector<Node> GetAroundNodes(Node current);
 
-    void AddObstacles(std::vector<Vector2AStar> positions);
-    void AddObstacle(Vector2AStar position);
-    void RemoveObstacle(Vector2AStar position);
+    void AddObstacles(std::vector<Vector2> positions);
+    void AddObstacle(Vector2 position);
+    void RemoveObstacle(Vector2 position);
 
 };
 

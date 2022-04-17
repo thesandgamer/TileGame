@@ -1,6 +1,9 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include "raylib.h"
+
+#include "IInformationPasseur.h"
 
 using std::string;
 
@@ -8,15 +11,31 @@ class InformationDisplay
 {
 public:
 	InformationDisplay(string titleP);
+	InformationDisplay();
 
 	string GetTitle() { return title; }
+	void SetTitle(string titleP) { title = titleP; }
 
-	void SetPos(Vector2* pos) { position = pos; }
+	void SetPos(Vector2* pos);
 	Vector2 GetPos() { return *position; }
+
+	InformationDisplay(const InformationDisplay& other)
+	{
+		operator=(other);
+
+	}
+	InformationDisplay& operator=(const InformationDisplay& other)
+	{
+		this->title = other.title;
+		this->position = other.position;
+	}
+	Vector2* position;
+	IInformationPasseur* infPasseur;
+
+
 
 private:
 	string title;
-	Vector2* position;
 
 		
 };

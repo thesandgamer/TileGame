@@ -17,7 +17,7 @@ public:
 	AStar();
 	~AStar() {};
 
-	std::vector<Vector2AStar> GetPath(Vector2AStar startPos, Vector2AStar endPos);
+	std::vector<Vector2> GetPath(Vector2 startPos, Vector2 endPos);
 
 	Graph aStarGrid;
 	int GRID_WIDTH;
@@ -47,6 +47,6 @@ public:
 	}
 
 private:
-	std::vector<Vector2AStar> CalculatePath();
+	std::vector<Vector2> CalculatePath();
 };
 

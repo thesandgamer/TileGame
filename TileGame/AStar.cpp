@@ -11,7 +11,7 @@ AStar::AStar(): GRID_WIDTH(0),GRID_HEIGHT(0)
 
 }
 
-std::vector<Vector2AStar> AStar::GetPath(Vector2AStar startPos, Vector2AStar endPos)
+std::vector<Vector2> AStar::GetPath(Vector2 startPos, Vector2 endPos)
 {
 	//===========]Initialisation[===========//
     openList.Clear();
@@ -82,15 +82,15 @@ std::vector<Vector2AStar> AStar::GetPath(Vector2AStar startPos, Vector2AStar end
         std::cout << "Path not find" << std::endl;
         return {};
     }
-    std::vector<Vector2AStar> path = CalculatePath();
+    std::vector<Vector2> path = CalculatePath();
 
     return path;
 }
 
 
-std::vector<Vector2AStar> AStar::CalculatePath()
+std::vector<Vector2> AStar::CalculatePath()
 {
-    std::vector<Vector2AStar> path;
+    std::vector<Vector2> path;
     while (current != startNode)
     {
         path.push_back(current.positon);
