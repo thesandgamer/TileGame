@@ -1,26 +1,23 @@
 #include "Tile.h"
 #include "Grid.h"
 
-Tile::Tile()
+Tile::Tile(): refToGrid{nullptr}, informations{nullptr}
 {
-	refToGrid = nullptr;
+
 }
 
-Tile::Tile(int xP, int yP): x{xP}, y{yP}
+Tile::Tile(int xP, int yP)
 {
-	x = xP;
-	y = yP;
 	pos.x = xP;
 	pos.y = yP;
 	traversible = true;
 	refToGrid = nullptr;
 
+
 }
 
 Tile::Tile(int xP, int yP, float widthP, float heightP)
 {
-	x = xP;
-	y = yP;
 	pos.x = xP;
 	pos.y = yP;
 	width = widthP;
@@ -28,6 +25,15 @@ Tile::Tile(int xP, int yP, float widthP, float heightP)
 	traversible = true;
 	refToGrid = nullptr;
 
+
+
+}
+
+void Tile::Init()
+{
+	informations = new InformationDisplay();
+	informations->SetPos(&pos);
+	informations->infPasseur = this;
 }
 
 void Tile::Draw()
@@ -42,4 +48,12 @@ void Tile::Draw()
 		col = PURPLE;
 	}
 	DrawRectangle(pos.x * width + refToGrid->GetGridPos().x , pos.y * height + refToGrid->GetGridPos().y, width - 4, height - 4, col);
+}
+
+string Tile::GetInformationOf()
+{
+	string info = "Ceci est une tile";
+	informations->SetTitle(info);
+
+	return info;
 }

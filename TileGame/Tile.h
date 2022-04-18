@@ -1,9 +1,11 @@
 #pragma once
 #include "raylib.h"
+#include "InformationDisplay.h"
+#include "IInformationPasseur.h"
 
 class Grid;
 
-class Tile
+class Tile: public IInformationPasseur
 {
 public:
 	Tile();
@@ -12,8 +14,6 @@ public:
 	~Tile() {};
 
 	Vector2 pos;
-	int x;
-	int y;
 
 	float width;
 	float height;
@@ -23,21 +23,28 @@ public:
 
 	Grid* refToGrid;
 
+	void Init();
 	void Draw();
+
+	InformationDisplay* GetInformations() { return informations; }
+
+	string GetInformationOf() override;
+
 
 	Tile& operator=(const Tile& other)
 	{
 		this->pos = other.pos;
-		this->x = other.x;
-		this->y = other.y;
 		this->width = other.width;
 		this->height = other.height;
 		this->traversible = other.traversible;
 		this->goal = other.goal;
 		this->refToGrid = other.refToGrid;
+		this->informations = other.informations;
 
 		return *this;
 	}	
+private:
+	InformationDisplay* informations;
 
 
 };

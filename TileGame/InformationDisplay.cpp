@@ -10,6 +10,6 @@ InformationDisplay::InformationDisplay(): title {NULL}, position{ nullptr }
 
 void InformationDisplay::SetPos(Vector2* pos)
 {
-	std::cout << "Position ref in info: " << pos << std::endl;
+	//std::cout << "Position ref in info: " << pos << std::endl;
 	position = pos; 
 }

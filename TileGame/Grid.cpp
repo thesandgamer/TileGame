@@ -38,6 +38,7 @@ void Grid::Start()
 		{
 			grid[i][j] = Tile(i, j, CELL_WIDTH, CELL_HEIGHT);
 			grid[i][j].refToGrid = this;
+			grid[i][j].Init();
 
 		}
 	}

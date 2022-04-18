@@ -88,6 +88,15 @@ void Start()
     //informations.insert({ &pawn.position,pawn.GetInformations() });
     informations.push_back(pawn.GetInformations());
 
+    //On va parcourir toutes les tiles de la grille et récupérer les informaion pour les mettre dans informations
+    for (int i = 0; i < grid.grid.size(); i++)
+    {
+        for (int j = 0; j < grid.grid[i].size(); j++)
+        {
+            informations.push_back(grid.grid[i][j].GetInformations());
+        }
+    }
+
 
 }
 
@@ -118,27 +127,26 @@ void Update()
         }
     }*/
 
-    if (grid.IsInGrid(mousePosInGrid))
+   
+    //On va récupérer ce qu'il y a en dessous de la souris, tile, pawn, ennemi,...: tout ce qui possède l'infomationDisplay
+    //On va passer l'information display du truc pointé dans l'ui inforamtion display
+
+    for (InformationDisplay* inf : informations)
     {
-        //On va récupérer ce qu'il y a en dessous de la souris, tile, pawn, ennemi,...: tout ce qui possède l'infomationDisplay
-        //On va passer l'information display du truc pointé dans l'ui inforamtion display
-
-        for (InformationDisplay* inf : informations)
+        if (inf->GetPos().x == mousePosInGrid.x && inf->GetPos().y == mousePosInGrid.y)
         {
-            if (inf->GetPos().x == mousePosInGrid.x && inf->GetPos().y == mousePosInGrid.y)
-            {
-                //Quand on est sur l'info display, faire en sorte d'appeler la fonction pour setup le texte
-                inf->infPasseur->GetInformationOf();
-                infoUi->infoLinkedTo = inf;
-            }
-            else
-            {
-                infoUi->infoLinkedTo = nullptr;
-            }
+            //Quand on est sur l'info display, faire en sorte d'appeler la fonction pour setup le texte
+            inf->infPasseur->GetInformationOf();
+            infoUi->infoLinkedTo = inf;
+            break;
         }
-       // infoUi->infoLinkedTo = pawn.GetInformations();
-
+        else
+        {
+            infoUi->infoLinkedTo = nullptr;
+        }
     }
+    // infoUi->infoLinkedTo = pawn.GetInformations();
+
 
     if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
     {
