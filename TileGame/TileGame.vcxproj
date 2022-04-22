@@ -172,6 +172,7 @@
   <ItemGroup>
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InformationDisplay.cpp" />
@@ -180,7 +181,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Pawn.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TurnsManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\build\raylib.vcxproj">
@@ -191,15 +194,19 @@
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStartUtility.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="IInformationPasseur.h" />
     <ClInclude Include="InformationDisplay.h" />
     <ClInclude Include="InformationDisplayUi.h" />
+    <ClInclude Include="ITurn.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Pawn.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TurnsManager.h" />
     <ClInclude Include="Vector2AStar.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

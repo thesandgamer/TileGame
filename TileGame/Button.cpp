@@ -23,6 +23,19 @@ Button::~Button()
 
 }
 
+void Button::ButtonCliqued()
+{
+	TraceLog(LOG_INFO, " Button cliqued");
+	drawColor = GRAY;
+	CliquedSendFunction();
+
+	CliquedSendFunctionWithInt();
+}
+
+void Button::ButtonHovered()
+{
+}
+
 void Button::Update()
 {
 	mousePos = &GetMousePosition();
@@ -43,11 +56,7 @@ void Button::Update()
 	{
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
-			TraceLog(LOG_INFO, " Button cliqued");
-			drawColor = GRAY;
-			CliquedSendFunction();
-
-			CliquedSendFunctionWithInt();
+			ButtonCliqued();
 
 		}
 	}

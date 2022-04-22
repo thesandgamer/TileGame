@@ -10,6 +10,12 @@
     <Filter Include="UI">
       <UniqueIdentifier>{97cbf1f9-e68b-4fba-93c5-60402ec0ff95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="InformationDisplay">
+      <UniqueIdentifier>{dc254172-f2a8-47d3-8cd9-a6dc0551fa6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Turn">
+      <UniqueIdentifier>{44467689-bd38-4ac1-905c-d35875e45b21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -36,13 +42,20 @@
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InformationDisplay.cpp" />
-    <ClCompile Include="InformationDisplayUi.cpp">
-      <Filter>UI</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="InformationDisplayUi.cpp">
+      <Filter>InformationDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="InformationDisplay.cpp">
+      <Filter>InformationDisplay</Filter>
+    </ClCompile>
+    <ClCompile Include="TurnsManager.cpp">
+      <Filter>Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStar.h">
@@ -72,13 +85,25 @@
     <ClInclude Include="Pawn.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="InformationDisplay.h" />
-    <ClInclude Include="InformationDisplayUi.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="IInformationPasseur.h" />
+    <ClInclude Include="InformationDisplayUi.h">
+      <Filter>InformationDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="IInformationPasseur.h">
+      <Filter>InformationDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="InformationDisplay.h">
+      <Filter>InformationDisplay</Filter>
+    </ClInclude>
+    <ClInclude Include="TurnsManager.h">
+      <Filter>Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="ITurn.h">
+      <Filter>Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Game.h" />
   </ItemGroup>
 </Project>

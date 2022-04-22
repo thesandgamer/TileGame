@@ -1,4 +1,5 @@
 #include "Pawn.h"
+#include "Game.h"
 
 
 Pawn::Pawn()
@@ -37,7 +38,7 @@ Pawn::~Pawn()
 {
 }
 
-bool canMove;
+
 std::vector<Vector2> poses;
 
 void Pawn::Init()
@@ -45,11 +46,16 @@ void Pawn::Init()
 	informations = new InformationDisplay();
 	informations->SetPos(&position);
 	informations->infPasseur = this;
+
+	gridRef = Game::instance().GetGrid();
 }
 
 void Pawn::Draw()
 {
-	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 + gridRef->GetGridPos().x , position.y * gridRef->CELL_HEIGHT + height/4 + gridRef->GetGridPos().y,width,height,YELLOW);
+	Color col = YELLOW;
+	if (selected) col = RED;
+
+	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 + gridRef->GetGridPos().x , position.y * gridRef->CELL_HEIGHT + height/4 + gridRef->GetGridPos().y,width,height,col);
 }
 
 int currentTime = 0; //Variable utilisé pour l'easing
@@ -78,6 +84,7 @@ void Pawn::Update()
 		if (positionIterator >= poses.size()) //Si on est arrivé à la fin des position où aller
 		{
 			canMove = false;
+			haveDoActions = true;
 			return;
 		}
 		
@@ -87,6 +94,8 @@ void Pawn::Update()
 
 void Pawn::MoveTo(Vector2 positionToGo)
 {
+	if (haveDoActions) return;
+
 	//Si il n'y a pas de position à aller, finit
 	//Appel le A star
 	gridRef->Debug_CleanPathVisibility();
@@ -182,3 +191,4 @@ string Pawn::GetInformationOf()
 
 	return info;
 }
+

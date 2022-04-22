@@ -7,6 +7,7 @@
 #include "Vector2AStar.h"
 #include "InformationDisplay.h"
 #include "IInformationPasseur.h"
+#include "ITurn.h"
 
 
 
@@ -51,8 +52,18 @@ public:
 		return *this;
 	}
 
+
+	bool selected = false;
+
+
 private:
 	InformationDisplay* informations;
+
+	bool canMove = false;
+	
+	bool haveDoActions = false;	
+
+
 
 };
 
