@@ -25,7 +25,7 @@ void TurnsManager::Update()
 		if (haveTurn->EndTurn())//Si il à finit son tour
 		{
 			//Passe au suivant
-			if (actual < pawns.size())
+			if (actual < pawns.size()-1)
 			{
 				actual++;
 			}

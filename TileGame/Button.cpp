@@ -85,6 +85,7 @@ void Button::CliquedSendFunction()
 
 void Button::CliquedSendFunctionWithInt()
 {
+	call();
 	if (functPrtInt != nullptr)
 	{
 		if (value != NULL)
@@ -94,3 +95,11 @@ void Button::CliquedSendFunctionWithInt()
 	}
 }
 
+
+void Button::call()
+{
+	if (callback)
+	{
+		callback();//Appel ce qu'il y a dans callback
+	}
+}

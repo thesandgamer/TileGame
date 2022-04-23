@@ -2,6 +2,10 @@
 #include <raylib.h>
 #include <string>
 #include <iostream>
+#include <functional>
+
+
+typedef std::function<void()> MemberCallback;//Créer un type pointeur fonction void, créer le type du lambda
 
 enum class ButtonState
 {
@@ -34,7 +38,8 @@ public:
 
     std::string textInButton;
 
-
+    void setCallback(MemberCallback newCallback) { callback = newCallback; }//Set l'instance
+    void call();//Appel
 
 private:
     ButtonState state;
@@ -46,6 +51,9 @@ private:
     Texture2D sprite;
 
     Color drawColor ;
+
+
+    MemberCallback callback; //instance de pointeur de fonction
 
 };
 

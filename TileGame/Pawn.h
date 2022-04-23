@@ -37,6 +37,12 @@ public:
 
 	Grid* gridRef;
 
+	bool selected = false;
+
+	bool haveDoActions = false;
+
+
+
 	Pawn(const Pawn& other)
 	{
 		operator=(other);
@@ -46,22 +52,17 @@ public:
 	{
 		this->position = other.position;
 		this->width = other.width;
-		this->height = other.height;	
+		this->height = other.height;
 		this->gridRef = other.gridRef;
 		this->informations = other.informations;
 		return *this;
 	}
-
-
-	bool selected = false;
-
 
 private:
 	InformationDisplay* informations;
 
 	bool canMove = false;
 	
-	bool haveDoActions = false;	
 
 
 

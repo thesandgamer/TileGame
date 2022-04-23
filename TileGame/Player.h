@@ -31,6 +31,10 @@ public:
 
 	void FinishPlayerTurn();
 
+
+
+
+
 //==========Interfaces==========
 	void StartTurn();
 	bool EndTurn();
@@ -54,6 +58,7 @@ private:
 
 //==========UI==========
 	Button* endTurnButton = nullptr;
+
 
 
 

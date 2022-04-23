@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Grid.h"
 
+
 Player::Player(): controledPawn{nullptr}, gridRef{nullptr}, mousePos{},mousePosInGrid{}
 {
 }
@@ -25,10 +26,9 @@ void Player::Start()
 //==========UI============
 	endTurnButton = new Button({ 10,10 }, 40.0f, 40.0f);
 	endTurnButton->textInButton = "End Turn";
-	endTurnButton->functPrt = &FinishPlayerTurn;
-
-
-
+	//endTurnButton->functPrt = [this]() { finishHisTurn = true } ();
+	endTurnButton->setCallback( [this]() { this->FinishPlayerTurn(); } );//Set la fonction de callback créer un fonction lambda
+							//Quel objet // Quel fonction
 
 
 }
@@ -90,7 +90,7 @@ void Player::MovePawn()
 	{
 		if (gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].traversible == true)
 		{
-			std::cout << "traversible" << std::endl;
+			//std::cout << "traversible" << std::endl;
 			controledPawn->MoveTo({ mousePosInGrid.x, mousePosInGrid.y });
 			gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
 		}
@@ -102,14 +102,12 @@ bool Player::SelectPawn()
 {
 	if (gridRef->IsInGrid(mousePosInGrid))
 	{
-		std::cout << "Pawn ref: " << &pawns[0] << std::endl;
-		std::cout << "Pawn ref: " << &pawns[1] << std::endl;
 
 		for (Pawn& pawn : pawns)
 		{
 			if (pawn.position.x == mousePosInGrid.x && pawn.position.y == mousePosInGrid.y)
 			{
-				std::cout << "Pawn controlled: " << &pawn << std::endl;
+				//std::cout << "Pawn controlled: " << &pawn << std::endl;
 				if (controledPawn != nullptr) DeSelectPawn();
 				controledPawn = &pawn;
 				pawn.selected = true;
@@ -144,10 +142,17 @@ void Player::FinishPlayerTurn()
 	finishHisTurn = true;
 }
 
+
+
 void Player::StartTurn()
 {
 	std::cout << "Its player Turn " << std::endl;
+	for (Pawn& pawn : pawns)
+	{
+		pawn.haveDoActions = false;
+	}
 	isTurn = true;
+	finishHisTurn = false;
 }
 
 bool Player::EndTurn()
