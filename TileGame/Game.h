@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Ennemy.h"
 #include "Grid.h"
 #include "Button.h"
 #include "InformationDisplayUi.h"
@@ -39,6 +40,7 @@ private:
 
 	TurnsManager turnManager;
 	Player player;
+	Ennemy ennemy;
 	Grid grid;
 
 

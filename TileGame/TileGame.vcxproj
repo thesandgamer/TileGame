@@ -170,8 +170,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Ennemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -191,9 +193,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStartUtility.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Ennemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Grid.h" />

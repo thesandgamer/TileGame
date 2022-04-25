@@ -58,6 +58,11 @@ public:
 		return *this;
 	}
 
+	//=====Couleurs
+	Color col = YELLOW;
+	Color selCol = RED;
+
+
 private:
 	InformationDisplay* informations;
 

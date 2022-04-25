@@ -38,6 +38,7 @@ void Button::ButtonHovered()
 
 void Button::Update()
 {
+	if (!isActive) return;
 	mousePos = &GetMousePosition();
 	//Check Si la souris est en hover
 	if ((position.x < mousePos->x && mousePos->x < position.x + width)
@@ -66,6 +67,8 @@ void Button::Update()
 float fontSize = 10;
 void Button::Draw()
 {
+	if (!isActive) return;
+
 	DrawRectangle(position.x, position.y, width, height, drawColor);
 	if (textInButton != "")
 	{

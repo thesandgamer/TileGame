@@ -16,11 +16,14 @@
     <Filter Include="Turn">
       <UniqueIdentifier>{44467689-bd38-4ac1-905c-d35875e45b21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{05b445d7-678f-453a-b4cd-953ef855d6f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Grid">
+      <UniqueIdentifier>{589062a8-c384-4dac-be61-4d3cd2e7b186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AStar.cpp">
       <Filter>AStar</Filter>
     </ClCompile>
@@ -32,12 +35,6 @@
     </ClCompile>
     <ClCompile Include="Node.cpp">
       <Filter>AStar</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pawn.cpp">
       <Filter>Source Files</Filter>
@@ -54,8 +51,27 @@
     <ClCompile Include="TurnsManager.cpp">
       <Filter>Turn</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="Ennemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStar.h">
@@ -75,12 +91,6 @@
     </ClInclude>
     <ClInclude Include="AStartUtility.h">
       <Filter>AStar</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Pawn.h">
       <Filter>Source Files</Filter>
@@ -103,7 +113,23 @@
     <ClInclude Include="ITurn.h">
       <Filter>Turn</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="Player.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Ennemy.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

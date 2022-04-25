@@ -41,6 +41,8 @@ public:
     void setCallback(MemberCallback newCallback) { callback = newCallback; }//Set l'instance
     void call();//Appel
 
+    bool isActive = true;
+
 private:
     ButtonState state;
 

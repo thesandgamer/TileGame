@@ -93,6 +93,7 @@ void Player::MovePawn()
 			//std::cout << "traversible" << std::endl;
 			controledPawn->MoveTo({ mousePosInGrid.x, mousePosInGrid.y });
 			gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
+
 		}
 
 	}
@@ -139,7 +140,10 @@ void Player::SetGrid(Grid* grid)
 
 void Player::FinishPlayerTurn()
 {
+	isTurn = false;
 	finishHisTurn = true;
+
+	endTurnButton->isActive = false;
 }
 
 
@@ -153,6 +157,9 @@ void Player::StartTurn()
 	}
 	isTurn = true;
 	finishHisTurn = false;
+
+	endTurnButton->isActive = true;
+
 }
 
 bool Player::EndTurn()

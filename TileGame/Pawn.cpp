@@ -52,10 +52,10 @@ void Pawn::Init()
 
 void Pawn::Draw()
 {
-	Color col = YELLOW;
-	if (selected) col = RED;
+	Color color = col; 
+	if (selected) color = selCol;
 
-	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 + gridRef->GetGridPos().x , position.y * gridRef->CELL_HEIGHT + height/4 + gridRef->GetGridPos().y,width,height,col);
+	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 + gridRef->GetGridPos().x , position.y * gridRef->CELL_HEIGHT + height/4 + gridRef->GetGridPos().y,width,height, color);
 }
 
 int currentTime = 0; //Variable utilisé pour l'easing
