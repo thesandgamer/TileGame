@@ -99,7 +99,6 @@ void Grid::Debug_CleanPathVisibility()
 	{
 		for (int j = 0; j < grid[i].size(); j++)
 		{
-			grid[i][j].goal = false;
 		}
 	}
 }

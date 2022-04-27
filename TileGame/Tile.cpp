@@ -43,10 +43,6 @@ void Tile::Draw()
 	{
 		col = BLACK;
 	}
-	else if (goal)
-	{
-		col = PURPLE;
-	}
 	DrawRectangle(pos.x * width + refToGrid->GetGridPos().x , pos.y * height + refToGrid->GetGridPos().y, width - 4, height - 4, col);
 }
 

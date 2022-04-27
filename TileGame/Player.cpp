@@ -92,8 +92,6 @@ void Player::MovePawn()
 		{
 			//std::cout << "traversible" << std::endl;
 			controledPawn->MoveTo({ mousePosInGrid.x, mousePosInGrid.y });
-			gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].goal = true;
-
 		}
 
 	}
@@ -124,8 +122,11 @@ bool Player::SelectPawn()
 
 void Player::DeSelectPawn()
 {
-	controledPawn->selected = false;
-	controledPawn = nullptr;
+	if (controledPawn != nullptr)
+	{
+		controledPawn->selected = false;
+		controledPawn = nullptr;
+	}	
 }
 
 vector<Pawn>* Player::GetPawns()

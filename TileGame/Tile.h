@@ -19,7 +19,6 @@ public:
 	float height;
 
 	bool traversible;
-	bool goal = false;
 
 	Grid* refToGrid;
 
@@ -37,7 +36,6 @@ public:
 		this->width = other.width;
 		this->height = other.height;
 		this->traversible = other.traversible;
-		this->goal = other.goal;
 		this->refToGrid = other.refToGrid;
 		this->informations = other.informations;
 
