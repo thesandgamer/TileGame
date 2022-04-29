@@ -36,6 +36,8 @@ public:
 
 	void Debug_CleanPathVisibility();
 
+	void CalculateObstacles();
+
 	Grid& operator=(const Grid& other)
 	{
 		this->GRID_WITH = other.GRID_WITH;

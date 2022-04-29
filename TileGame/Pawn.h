@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include "easings.h"
 
+#include "Actor.h"
+
 #include "Grid.h"
 #include "Vector2AStar.h"
 #include "InformationDisplay.h"
@@ -12,19 +14,22 @@
 
 
 
-class Pawn: public IInformationPasseur
+class Pawn: public IInformationPasseur, public Actor
 {
 public:
 	Pawn();
 	Pawn(Vector2 positionP);
+	Pawn(Vector2 positionP, Texture2D spriteP);
 	Pawn(Vector2 positionP,float widthP,float heightP);
 	~Pawn();
 
 	void Init();
 	void Draw();
 	void Update();
+
+	void DrawVisual(Vector2 positionP, bool ghost);
 		
-	Vector2 position;
+	//Vector2 position;
 
 	float width;
 	float height;
@@ -42,7 +47,6 @@ public:
 	bool haveDoActions = false;
 
 
-
 	Pawn(const Pawn& other)
 	{
 		operator=(other);
@@ -55,6 +59,7 @@ public:
 		this->height = other.height;
 		this->gridRef = other.gridRef;
 		this->informations = other.informations;
+		this->sprite = other.sprite;
 		return *this;
 	}
 
@@ -68,6 +73,7 @@ private:
 
 	bool canMove = false;
 	
+	Texture2D sprite;
 
 
 

@@ -51,7 +51,7 @@ int main(int argc, char** argv[])
 void Update()
 {
     /*
-    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
     {
         
         if (grid.IsInGrid(mousePosInGrid))

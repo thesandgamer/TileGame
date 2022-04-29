@@ -1,4 +1,5 @@
 #include "TurnsManager.h"
+#include "Game.h"
 
 TurnsManager::TurnsManager() : haveTurn{ nullptr }, actual(0)
 {

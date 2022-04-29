@@ -31,7 +31,7 @@ public:
 
 	void FinishPlayerTurn();
 
-
+	Pawn* GetControledPawn() { return controledPawn; }
 
 
 

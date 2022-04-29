@@ -1,10 +1,12 @@
 #pragma once
+#include "Actor.h"
 #include "Player.h"
 #include "Ennemy.h"
 #include "Grid.h"
 #include "Button.h"
 #include "InformationDisplayUi.h"
 #include "TurnsManager.h"
+#include "Cursor.h"
 
 class Game
 {
@@ -34,6 +36,10 @@ public:
 
 	Grid* GetGrid() { return &grid; }
 
+	vector<Actor*> GetElementsInGame() { return elementsInGame; }
+
+	Player* GetPlayer() { return &player; }
+
 private:
 	int  SCREEN_WIDTH;
 	int  SCREEN_HEIGHT;
@@ -42,6 +48,11 @@ private:
 	Player player;
 	Ennemy ennemy;
 	Grid grid;
+
+	Cursor cursor;
+
+	vector<Actor*> elementsInGame;
+
 
 
 //========On va gérer le display des informations

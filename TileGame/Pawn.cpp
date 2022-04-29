@@ -8,20 +8,35 @@ Pawn::Pawn()
 	gridRef = nullptr;
 	informations = nullptr;
 
+
 }
 
-Pawn::Pawn(Vector2 positionP)
+Pawn::Pawn(Vector2 positionP): Actor(positionP)
 {
 	position = positionP;
 	//gridRef = new Grid();
 	gridRef = nullptr;
 	informations = nullptr;
+	
+
 	Init();
 
 
 }
 
-Pawn::Pawn(Vector2 positionP, float widthP, float heightP)
+Pawn::Pawn(Vector2 positionP, Texture2D spriteP) : Actor(positionP)
+{
+	position = positionP;
+	gridRef = nullptr;
+	//gridRef = new Grid();
+	informations = nullptr;
+	sprite = spriteP;
+
+	Init();
+
+}
+
+Pawn::Pawn(Vector2 positionP, float widthP, float heightP) : Actor(positionP)
 {
 	position = positionP;
 	width = widthP;
@@ -29,12 +44,13 @@ Pawn::Pawn(Vector2 positionP, float widthP, float heightP)
 	gridRef = nullptr;
 	//gridRef = new Grid();
 	informations = nullptr;
+
 	Init();
 
 
 }
 
-Pawn::~Pawn()
+Pawn::~Pawn() 
 {
 }
 
@@ -48,14 +64,13 @@ void Pawn::Init()
 	informations->infPasseur = this;
 
 	gridRef = Game::instance().GetGrid();
+	std::cout << sprite.width << std::endl;
+
 }
 
 void Pawn::Draw()
 {
-	Color color = col; 
-	if (selected) color = selCol;
-
-	DrawRectangle( position.x * gridRef->CELL_WIDTH + width/4 + gridRef->GetGridPos().x , position.y * gridRef->CELL_HEIGHT + height/4 + gridRef->GetGridPos().y,width,height, color);
+	DrawVisual(position,selected);
 }
 
 int currentTime = 0; //Variable utilisé pour l'easing
@@ -69,6 +84,8 @@ void Pawn::Update()
 	{
 		Vector2 posToGo = poses[positionIterator];
 		//Vector2AStar pos = { position.x,position.y };
+		Game::instance().GetGrid()->CalculateObstacles();
+
 
 		if (position.x == posToGo.x && position.y == posToGo.y)//Si on est arrivé à la position suivante
 		{
@@ -85,10 +102,24 @@ void Pawn::Update()
 		{
 			canMove = false;
 			haveDoActions = true;
+			selected = false;
 			return;
 		}
-		
+
 	}
+}
+
+void Pawn::DrawVisual(Vector2 positionP,bool ghost)
+{
+	Color color = WHITE;
+	if (ghost) color = LIGHTGRAY;
+	
+	if (sprite.mipmaps != NULL )
+	{
+		DrawTexture(sprite, positionP.x * gridRef->CELL_WIDTH + gridRef->GetGridPos().x,positionP.y * gridRef->CELL_HEIGHT + gridRef->GetGridPos().y, color);
+
+	}
+	DrawRectangle(positionP.x * gridRef->CELL_WIDTH + width / 4 + gridRef->GetGridPos().x, positionP.y * gridRef->CELL_HEIGHT + height / 4 + gridRef->GetGridPos().y, width, height, color);
 }
 
 
@@ -103,84 +134,6 @@ void Pawn::MoveTo(Vector2 positionToGo)
 	canMove = true;
 	currentTime = 0;
 	positionIterator = 0;
-
-	/*
-	Vector2AStar actualPos = position;
-	float currentTime = 0;
-	int duration = 400000;
-
-	
-	while (position != positionToGo)
-	{
-		position.x += 0.1; //EaseSineIn(currentTime, actualPos.x, positionToGo.x - actualPos.x, duration);
-		position.y += 0.1; //EaseSineIn(currentTime, actualPos.y, positionToGo.y - actualPos.y, duration);
-		//currentTime++;
-
-	}
-	*/
-	/*
-	for (Vector2AStar posToGo : poses)
-	{
-		gridRef->grid[posToGo.x][posToGo.y].goal = true;
-		//x = posToGo.x;
-		//y = posToGo.y;<
-		std::cout << posToGo.x << " " << posToGo.y << std::endl;
-
-		
-		Vector2AStar actualPos = position;
-		float currentTime = 0;
-		int duration = 400;
-
-		while (position != posToGo)
-		{
-			position.x = EaseSineIn(currentTime, actualPos.x, posToGo.x - actualPos.x, duration);
-			position.y = EaseSineIn(currentTime, actualPos.y, posToGo.y - actualPos.y, duration);
-			std::cout << "Position: " << position.x << " : " << position.y << std::endl;
-			currentTime++;
-
-		}
-		std::cout << "FInish " << std::endl;
-		/*
-		int currentTime = 0;
-		int duration = 400;
-		Vector2AStar startPosition = position;
-		while (position.x > posToGo.x && position.y > posToGo.y)
-		{
-			//position.x = EaseSineIn(currentTime, startPosition.x, posToGo.x - startPosition.x, duration);
-			//position.x += 0.1;
-			//position.y += 0.1;
-			//position.y = EaseSineIn(currentTime, startPosition.y, posToGo.y - startPosition.y, duration);
-			std::cout <<"Position: " << position.x << " " << position.y << std::endl;
-
-			currentTime++;
-		}
-		std::cout << "finish move" << std::endl;
-
-
-		int currentTime = 0;
-		int duration = 40000;
-		float startPositionX = 0.0f;
-		float finalPositionX = 30.0f;
-		float currentPositionX = startPositionX;
-
-		while (currentPositionX < finalPositionX)
-		{
-			//currentPositionX = EaseSineIn(currentTime, startPositionX, finalPositionX - startPositionX, duration);
-			currentPositionX += 0.1f;
-			//std::cout << currentPositionX << std::endl;
-			currentTime++;
-		}
-		std::cout << "FINISH" << std::endl;
-		x = posToGo.x;
-		y = posToGo.y;
-
-		
-	}*/
-
-	//On va récupérer les positions données par le A* et les parcourir
-		//On va faire un lerp entre la position actuel et la position 
-	//On va attendre un peut
-	//Et on continue la boucle
 
 }
 

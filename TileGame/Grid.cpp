@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include "Game.h"
 
 Grid::Grid(Vector2 pos,int width, int height, int cellWidth, int cellHeight) :gridPosition(pos), GRID_WITH{ width }, GRID_HEIGHT{ height }, CELL_WIDTH{ cellWidth },CELL_HEIGHT{cellHeight}
 {
@@ -100,5 +101,15 @@ void Grid::Debug_CleanPathVisibility()
 		for (int j = 0; j < grid[i].size(); j++)
 		{
 		}
+	}
+}
+
+void Grid::CalculateObstacles()
+{
+	for each (Actor * act in Game::instance().GetElementsInGame())
+	{
+		aStar.aStarGrid.AddObstacle(act->position);
+		grid[act->position.x][act->position.y].traversible = false;
+
 	}
 }

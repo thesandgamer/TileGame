@@ -173,6 +173,7 @@
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Ennemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graph.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStartUtility.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Ennemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graph.h" />

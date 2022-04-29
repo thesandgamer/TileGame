@@ -28,6 +28,18 @@ void Game::Start()
     ennemy.Start();
     ennemy.SetGrid(&grid);
 
+//=============
+    cursor.Start();
+
+//============Setup elements in game==============
+    for (int i = 0; i < player.GetPawns()->size(); i++)
+    {
+        elementsInGame.push_back(&player.GetPawns()->at(i));
+    }
+    for (int i = 0; i < ennemy.GetPawns()->size(); i++)
+    {
+        elementsInGame.push_back(&ennemy.GetPawns()->at(i));
+    }
 
 //===========Setup les info==========
     infoUi = new InformationDisplayUi();
@@ -59,6 +71,8 @@ void Game::Start()
     turnManager.Start();
 
 
+
+
 }
 
 void Game::Update()
@@ -67,6 +81,7 @@ void Game::Update()
     grid.Update();
 	player.Update();
     ennemy.Update();
+    cursor.Updtate();
 
 
 //=======Updtate infos=========
@@ -103,6 +118,7 @@ void Game::Draw()
 void Game::DrawUi()
 {
 	player.DrawUi();
+    cursor.Draw();
 
 //=======Draw les infos========
     infoUi->Draw();

@@ -14,7 +14,8 @@ void Player::Start()
 {
 
 //=========Gère les pawns
-	pawns.push_back(Pawn({5,5},20,20));
+	Texture2D mech1Sprite = LoadTexture("Ressources/MechGreen1.png");
+	pawns.push_back(Pawn({5,5}, mech1Sprite));
 	pawns.push_back(Pawn({8,8},20,20));
 	//controledPawn = &pawns.at(0);
 
@@ -56,7 +57,30 @@ void Player::Update()
 	}
 	if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
 	{
-		DeSelectPawn();
+		if (controledPawn == nullptr)
+		{
+			if (gridRef->IsInGrid(mousePosInGrid))
+			{
+				if (gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].traversible)
+				{
+					gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
+					gridRef->aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+				}
+				else
+				{
+					gridRef->grid[mousePosInGrid.x][mousePosInGrid.y].traversible = true;
+					gridRef->aStar.aStarGrid.RemoveObstacle({ mousePosInGrid.x,mousePosInGrid.y });
+				}
+			}
+		}
+		else if (controledPawn != nullptr)
+		{
+			DeSelectPawn();
+
+		}
+
+		
+		
 	}
 
 //==========Update les pawns============
@@ -92,6 +116,7 @@ void Player::MovePawn()
 		{
 			//std::cout << "traversible" << std::endl;
 			controledPawn->MoveTo({ mousePosInGrid.x, mousePosInGrid.y });
+			DeSelectPawn();
 		}
 
 	}
