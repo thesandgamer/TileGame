@@ -34,12 +34,14 @@ public:
 	Pawn* GetControledPawn() { return controledPawn; }
 
 
-
 //==========Interfaces==========
 	void StartTurn();
 	bool EndTurn();
 	int initiative;
 	bool finishHisTurn = false;
+	string GetName() { return name; }
+	string name;
+
 
 private:
 	vector<Pawn> pawns;

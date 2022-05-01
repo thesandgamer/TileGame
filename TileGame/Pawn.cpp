@@ -82,9 +82,9 @@ void Pawn::Update()
 	
 	if (canMove)
 	{
+		if (poses.empty()) return;
 		Vector2 posToGo = poses[positionIterator];
 		//Vector2AStar pos = { position.x,position.y };
-		Game::instance().GetGrid()->CalculateObstacles();
 
 
 		if (position.x == posToGo.x && position.y == posToGo.y)//Si on est arrivé à la position suivante
@@ -100,6 +100,7 @@ void Pawn::Update()
 
 		if (positionIterator >= poses.size()) //Si on est arrivé à la fin des position où aller
 		{
+
 			canMove = false;
 			haveDoActions = true;
 			selected = false;
@@ -112,14 +113,20 @@ void Pawn::Update()
 void Pawn::DrawVisual(Vector2 positionP,bool ghost)
 {
 	Color color = WHITE;
-	if (ghost) color = LIGHTGRAY;
-	
-	if (sprite.mipmaps != NULL )
+	if ((!haveDoActions) && (ghost))
+	{
+		color = GRAY;
+	}
+
+	if (sprite.width != NULL )
 	{
 		DrawTexture(sprite, positionP.x * gridRef->CELL_WIDTH + gridRef->GetGridPos().x,positionP.y * gridRef->CELL_HEIGHT + gridRef->GetGridPos().y, color);
 
 	}
-	DrawRectangle(positionP.x * gridRef->CELL_WIDTH + width / 4 + gridRef->GetGridPos().x, positionP.y * gridRef->CELL_HEIGHT + height / 4 + gridRef->GetGridPos().y, width, height, color);
+	else
+	{
+		DrawRectangle(positionP.x * gridRef->CELL_WIDTH + width / 4 + gridRef->GetGridPos().x, positionP.y * gridRef->CELL_HEIGHT + height / 4 + gridRef->GetGridPos().y, width, height, col);
+	}
 }
 
 

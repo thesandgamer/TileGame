@@ -38,12 +38,16 @@ void Tile::Init()
 
 void Tile::Draw()
 {
-	Color col = GRAY;
-	if (!traversible)
+	if (sprite.width != NULL)
 	{
-		col = BLACK;
+		DrawTexture(sprite, pos.x * refToGrid->CELL_WIDTH + refToGrid->GetGridPos().x, pos.y * refToGrid->CELL_HEIGHT + refToGrid->GetGridPos().y, WHITE);
+
 	}
-	DrawRectangle(pos.x * width + refToGrid->GetGridPos().x , pos.y * height + refToGrid->GetGridPos().y, width - 4, height - 4, col);
+	else
+	{
+		DrawRectangle(pos.x * refToGrid->CELL_WIDTH + width / 4 + refToGrid->GetGridPos().x, pos.y * refToGrid->CELL_HEIGHT + height / 4 + refToGrid->GetGridPos().y, width, height, LIGHTGRAY);
+
+	}
 }
 
 string Tile::GetInformationOf()

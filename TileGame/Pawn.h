@@ -23,9 +23,9 @@ public:
 	Pawn(Vector2 positionP,float widthP,float heightP);
 	~Pawn();
 
-	void Init();
-	void Draw();
-	void Update();
+	void Init() ;
+	void Draw() ;
+	void Update() ;
 
 	void DrawVisual(Vector2 positionP, bool ghost);
 		
@@ -40,7 +40,6 @@ public:
 
 	string GetInformationOf() override;
 
-	Grid* gridRef;
 
 	bool selected = false;
 
@@ -73,7 +72,6 @@ private:
 
 	bool canMove = false;
 	
-	Texture2D sprite;
 
 
 

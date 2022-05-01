@@ -1,5 +1,6 @@
 #pragma once
 #include "ITurn.h"
+#include "BandeauTexte.h"
 #include <vector>
 using std::vector;
 
@@ -14,6 +15,8 @@ public:
 	void Update();
 	void MakeTurns();
 
+	void DrawUi();
+
 	void AddPawn(ITurn* turn);
 
 private:
@@ -22,6 +25,9 @@ private:
 	vector<ITurn*> turnList;
 
 	int actual;
+
+	BandeauTexte endTurnBandeau;
+	
 };
 
 

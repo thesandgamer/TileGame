@@ -40,9 +40,11 @@ public:
 
 	Player* GetPlayer() { return &player; }
 
-private:
 	int  SCREEN_WIDTH;
 	int  SCREEN_HEIGHT;
+
+private:
+
 
 	TurnsManager turnManager;
 	Player player;
@@ -52,6 +54,8 @@ private:
 	Cursor cursor;
 
 	vector<Actor*> elementsInGame;
+
+	vector<Actor*> obstacles;
 
 
 

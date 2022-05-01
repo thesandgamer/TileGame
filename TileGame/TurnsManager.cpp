@@ -15,12 +15,18 @@ void TurnsManager::MakeTurnList(vector<ITurn*> pawnInGame)
 
 void TurnsManager::Start()
 {
+	Texture2D bandeauSprite = LoadTexture("Ressources/Bandeau.png");
+	Vector2 pos = { 0, Game::instance().SCREEN_HEIGHT / 2 };
+	endTurnBandeau = BandeauTexte(bandeauSprite,pos,3);
 	haveTurn = pawns.at(0);
 	MakeTurns();
 }
 
 void TurnsManager::Update()
 {
+	Game::instance().GetGrid()->CalculateObstacles();
+	endTurnBandeau.Update();
+
 	if (haveTurn != nullptr) //Si quelqu'un existe
 	{
 		if (haveTurn->EndTurn())//Si il à finit son tour
@@ -41,9 +47,18 @@ void TurnsManager::Update()
 
 void TurnsManager::MakeTurns()
 {
+	endTurnBandeau.SetText(pawns.at(actual)->GetName());
+	endTurnBandeau.DisplayBandeau();
+
 	haveTurn = pawns.at(actual);
 	haveTurn->finishHisTurn = false;
 	haveTurn->StartTurn();
+
+}
+
+void TurnsManager::DrawUi()
+{
+	endTurnBandeau.Draw();
 
 }
 

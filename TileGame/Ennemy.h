@@ -30,6 +30,10 @@ public:
 	int initiative;
 	bool finishHisTurn = false;
 
+	string GetName() { return name; }
+	string name;
+
+
 private:
 	vector<Pawn> pawns;
 	Pawn* controledPawn;

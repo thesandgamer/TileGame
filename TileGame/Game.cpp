@@ -16,19 +16,33 @@ void Game::Start()
     const static int CELL_HEIGHT = 32;
     Vector2 gridPos = { SCREEN_WIDTH / 2 - (GRID_WIDTH * CELL_WIDTH) / 2 ,SCREEN_HEIGHT / 2 - (GRID_HEIGHT * CELL_HEIGHT) / 2 };
 
+    Texture2D tileSprite = LoadTexture("Ressources/TileBackground.png");
+
+    
     grid = Grid(gridPos, GRID_WIDTH, GRID_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+    grid.spriteOfTiles = tileSprite;
     grid.Start();
+
+//=========Setup les obstacles==========
+    Texture2D rockSprite = LoadTexture("Ressources/Obstacle.png");
+    obstacles.push_back(new Actor({ 4,4 }, rockSprite));
+    obstacles.push_back(new Actor({ 8,2 }, rockSprite));
+
+    for each (Actor* obstacle in obstacles)
+    {
+        obstacle->Init();
+    }
 
 
 //=============Setup Player============
 	player.Start();
     player.SetGrid(&grid);
 
-//=============Setup Ennemly============
+//=============Setup Ennemy============
     ennemy.Start();
     ennemy.SetGrid(&grid);
 
-//=============
+//=============Setup Cursor===========
     cursor.Start();
 
 //============Setup elements in game==============
@@ -40,6 +54,12 @@ void Game::Start()
     {
         elementsInGame.push_back(&ennemy.GetPawns()->at(i));
     }
+
+    for each (Actor* obstacle in obstacles)
+    {
+        elementsInGame.push_back(obstacle);
+    }
+
 
 //===========Setup les info==========
     infoUi = new InformationDisplayUi();
@@ -72,15 +92,16 @@ void Game::Start()
 
 
 
-
 }
 
 void Game::Update()
 {
     turnManager.Update();
     grid.Update();
+
 	player.Update();
     ennemy.Update();
+
     cursor.Updtate();
 
 
@@ -106,7 +127,13 @@ void Game::Draw()
     BeginDrawing();
     ClearBackground(BLACK);
 
+
     grid.Draw();
+    for each (Actor* obstacle in obstacles)
+    {
+        obstacle->Draw();
+    }
+
 	player.Draw();
     ennemy.Draw();
 
@@ -122,4 +149,7 @@ void Game::DrawUi()
 
 //=======Draw les infos========
     infoUi->Draw();
+
+//=======
+    turnManager.DrawUi();
 }

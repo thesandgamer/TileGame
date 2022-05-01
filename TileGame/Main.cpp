@@ -46,38 +46,3 @@ int main(int argc, char** argv[])
 
 }
 
-
-
-void Update()
-{
-    /*
-    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
-    {
-        
-        if (grid.IsInGrid(mousePosInGrid))
-        {          
-            if (grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible)
-            {
-                grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = false;
-                grid.aStar.aStarGrid.AddObstacle({ mousePosInGrid.x,mousePosInGrid.y });
-            }
-            else
-            {
-                grid.grid[mousePosInGrid.x][mousePosInGrid.y].traversible = true;
-                grid.aStar.aStarGrid.RemoveObstacle({ mousePosInGrid.x,mousePosInGrid.y });
-            }
-        }
-    }
-    */
-
-    Button* endTurnButton;
-    // UI
-    endTurnButton = new Button({ 10,10 }, 40.0f, 40.0f);
-    endTurnButton->textInButton = "End Turn";
-
-    endTurnButton->Update();
-    endTurnButton->Draw();
-
-
-
-}

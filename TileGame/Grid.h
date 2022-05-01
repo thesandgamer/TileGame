@@ -38,6 +38,8 @@ public:
 
 	void CalculateObstacles();
 
+	Texture2D spriteOfTiles;
+
 	Grid& operator=(const Grid& other)
 	{
 		this->GRID_WITH = other.GRID_WITH;
@@ -47,6 +49,7 @@ public:
 		this->grid = other.grid;
 		this->aStar = other.aStar;
 		this->gridPosition = other.gridPosition;
+		this->spriteOfTiles = other.spriteOfTiles;
 		return* this;
 	}
 

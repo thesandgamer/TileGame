@@ -2,6 +2,8 @@
 
 Ennemy::Ennemy()
 {
+	name = "Ennemy";
+
 }
 
 Ennemy::~Ennemy()
@@ -10,8 +12,12 @@ Ennemy::~Ennemy()
 
 void Ennemy::Start()
 {
-	pawns.push_back(Pawn({ 7,0 }, 15, 15));
-	pawns.push_back(Pawn({ 4,2 }, 15, 15));
+
+//=========
+	Texture2D mech1Sprite = LoadTexture("Ressources/MechRed1.png");
+	Texture2D mech2Sprite = LoadTexture("Ressources/MechRed2.png");
+	pawns.push_back(Pawn({ 7,0 }, mech1Sprite));
+	pawns.push_back(Pawn({ 4,2 }, mech2Sprite));
 
 	for (int i = 0; i < pawns.size(); i++)
 	{
@@ -28,6 +34,7 @@ void Ennemy::Update()
 	{
 		pawns.at(i).Update();
 	}
+
 }
 
 void Ennemy::Draw()

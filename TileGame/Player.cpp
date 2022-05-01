@@ -4,6 +4,7 @@
 
 Player::Player(): controledPawn{nullptr}, gridRef{nullptr}, mousePos{},mousePosInGrid{}
 {
+	name = "Player";
 }
 
 Player::~Player()
@@ -15,17 +16,22 @@ void Player::Start()
 
 //=========Gère les pawns
 	Texture2D mech1Sprite = LoadTexture("Ressources/MechGreen1.png");
+	Texture2D mech2Sprite = LoadTexture("Ressources/MechGreen2.png");
 	pawns.push_back(Pawn({5,5}, mech1Sprite));
-	pawns.push_back(Pawn({8,8},20,20));
+	pawns.push_back(Pawn({8,8}, mech2Sprite));
 	//controledPawn = &pawns.at(0);
+
 
 	for (int i = 0; i < pawns.size(); i++)
 	{
 		pawns.at(i).Init();
 	}
 
+
 //==========UI============
-	endTurnButton = new Button({ 10,10 }, 40.0f, 40.0f);
+	Texture2D buttonSrpite = LoadTexture("Ressources/EndTurnButton.png");
+
+	endTurnButton = new Button({ 10,10 }, buttonSrpite, 128,64);
 	endTurnButton->textInButton = "End Turn";
 	//endTurnButton->functPrt = [this]() { finishHisTurn = true } ();
 	endTurnButton->setCallback( [this]() { this->FinishPlayerTurn(); } );//Set la fonction de callback créer un fonction lambda
@@ -93,6 +99,7 @@ void Player::Update()
 void Player::Draw()
 {
 //=========Draw les pawns============
+	
 	for (int i = 0; i < pawns.size(); i++)
 	{
 		pawns.at(i).Draw();

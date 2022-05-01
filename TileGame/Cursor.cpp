@@ -34,15 +34,13 @@ void Cursor::Draw()
 	float x = mousePosInGrid.x * gridRef->CELL_WIDTH ;
 	float y = mousePosInGrid.y * gridRef->CELL_HEIGHT ;
 
-	if (mousePosInGrid.x >= 0 && mousePosInGrid.x <= gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x <= gridRef->GRID_HEIGHT)
-	{
-		state = CusorState::SELECT;
-	}
+
+
 	if (Game::instance().GetPlayer()->GetControledPawn() != nullptr)
 	{
 		if (!Game::instance().GetPlayer()->GetControledPawn()->haveDoActions)
 		{
-			if (mousePosInGrid.x >= 0 && mousePosInGrid.x <= gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x <= gridRef->GRID_HEIGHT)
+			if (mousePosInGrid.x >= 0 && mousePosInGrid.x < gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x < gridRef->GRID_HEIGHT)
 			{
 				state = CusorState::PAWN_SELECTED_MOVE;
 			}
@@ -58,6 +56,25 @@ void Cursor::Draw()
 
 
 	}
+	else
+	{
+		if (mousePosInGrid.x >= 0 && mousePosInGrid.x < gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x < gridRef->GRID_HEIGHT)
+		{
+			state = CusorState::SELECT;
+		}
+		else
+		{
+			state = CusorState::NOONE;
+
+		}
+	}
+	for each (Actor * act in Game::instance().GetElementsInGame()) //Si le cursor est sur un élément du jeu
+	{
+		if (act->position.x == mousePosInGrid.x && act->position.y == mousePosInGrid.y)
+		{
+			state = CusorState::PAWN_SELECTED_CANT_MOVE;
+		}
+	}
 
 	switch (state)
 	{
@@ -71,6 +88,7 @@ void Cursor::Draw()
 
 		break;
 	case CusorState::PAWN_SELECTED_CANT_MOVE:
+		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, col);
 		break;
 	case CusorState::SELECT:
 		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, col);

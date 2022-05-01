@@ -41,6 +41,8 @@ public:
 
 		return *this;
 	}	
+
+	Texture2D sprite;
 private:
 	InformationDisplay* informations;
 

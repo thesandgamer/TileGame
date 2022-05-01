@@ -38,6 +38,7 @@ void Grid::Start()
 		for (int j = 0; j < grid[i].size(); j++)
 		{
 			grid[i][j] = Tile(i, j, CELL_WIDTH, CELL_HEIGHT);
+			grid[i][j].sprite = spriteOfTiles;
 			grid[i][j].refToGrid = this;
 			grid[i][j].Init();
 
@@ -58,7 +59,7 @@ void Grid::Draw()
 		for (Tile tile : ligne)
 		{
 			tile.Draw();
-			DrawRectangleLines(gridPosition.x + tile.pos.x* CELL_WIDTH, gridPosition.y + tile.pos.y*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, WHITE);
+			//DrawRectangleLines(gridPosition.x + tile.pos.x* CELL_WIDTH, gridPosition.y + tile.pos.y*CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, WHITE);
 
 		}
 	}
@@ -109,7 +110,7 @@ void Grid::CalculateObstacles()
 	for each (Actor * act in Game::instance().GetElementsInGame())
 	{
 		aStar.aStarGrid.AddObstacle(act->position);
-		grid[act->position.x][act->position.y].traversible = false;
+		//grid[act->position.x][act->position.y].traversible = false;
 
 	}
 }

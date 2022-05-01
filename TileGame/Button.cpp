@@ -28,7 +28,6 @@ void Button::ButtonCliqued()
 	TraceLog(LOG_INFO, " Button cliqued");
 	drawColor = GRAY;
 	CliquedSendFunction();
-
 	CliquedSendFunctionWithInt();
 }
 
@@ -45,18 +44,21 @@ void Button::Update()
 		&& (position.y < mousePos->y && mousePos->y < position.y + height))
 	{
 		state = ButtonState::HOVER;
-		drawColor = DARKGREEN;
+		drawColor = LIGHTGRAY;
 	}
 	else
 	{
 		state = ButtonState::IDLE;
-		drawColor = GREEN;
+		drawColor = WHITE;
 	}
 
 	if (state == ButtonState::HOVER)
 	{
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
+			state = ButtonState::CLICK;
+			drawColor = DARKGRAY;
+
 			ButtonCliqued();
 
 		}
@@ -68,12 +70,20 @@ float fontSize = 10;
 void Button::Draw()
 {
 	if (!isActive) return;
+	if (sprite.width != NULL)
+	{
+		DrawTexture(sprite, position.x , position.y, drawColor);
 
-	DrawRectangle(position.x, position.y, width, height, drawColor);
+	}
+	else
+	{
+		DrawRectangle(position.x, position.y, width, height, drawColor);
+	}
+	/*
 	if (textInButton != "")
 	{
 		DrawText(textInButton.c_str(), position.x+ width/2 - textInButton.length(), position.y + height/2 , (width + height) /20, WHITE);
-	}
+	}*/
 
 }
 

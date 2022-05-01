@@ -72,7 +72,12 @@
     <ClCompile Include="Actor.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BandeauTexte.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStar.h">
@@ -132,6 +137,11 @@
     <ClInclude Include="Actor.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Cursor.h" />
+    <ClInclude Include="Cursor.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BandeauTexte.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

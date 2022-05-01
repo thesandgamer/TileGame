@@ -172,6 +172,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="BandeauTexte.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Ennemy.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AStar.h" />
     <ClInclude Include="AStartUtility.h" />
+    <ClInclude Include="BandeauTexte.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Ennemy.h" />
