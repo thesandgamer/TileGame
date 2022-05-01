@@ -24,6 +24,7 @@ public:
 	void DeSelectPawn();
 
 	vector<Pawn>* GetPawns();
+	vector<Pawn> GetPawnsDirect();
 
 	void SetGrid(class Grid* grid);
 

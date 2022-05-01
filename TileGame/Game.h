@@ -7,6 +7,7 @@
 #include "InformationDisplayUi.h"
 #include "TurnsManager.h"
 #include "Cursor.h"
+#include "Obstacle.h"
 
 class Game
 {
@@ -55,7 +56,7 @@ private:
 
 	vector<Actor*> elementsInGame;
 
-	vector<Actor*> obstacles;
+	vector<Obstacle*> obstacles;
 
 
 

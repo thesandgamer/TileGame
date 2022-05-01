@@ -52,7 +52,7 @@ void Tile::Draw()
 
 string Tile::GetInformationOf()
 {
-	string info = "Ceci est une tile";
+	string info = "    --Tile de Sol-- \nPas d'effet particulier";
 	informations->SetTitle(info);
 
 	return info;

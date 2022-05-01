@@ -17,7 +17,7 @@ void TurnsManager::Start()
 {
 	Texture2D bandeauSprite = LoadTexture("Ressources/Bandeau.png");
 	Vector2 pos = { 0, Game::instance().SCREEN_HEIGHT / 2 };
-	endTurnBandeau = BandeauTexte(bandeauSprite,pos,3);
+	endTurnBandeau = BandeauTexte(bandeauSprite,pos,1.5f);
 	haveTurn = pawns.at(0);
 	MakeTurns();
 }

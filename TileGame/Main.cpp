@@ -11,7 +11,6 @@
 using namespace std;
 
 //Editor Variable
-void Update();
 
 //Setup la taille de l'écran
 int const SCREEN_WIDTH = 960;

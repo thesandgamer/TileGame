@@ -78,6 +78,7 @@
     <ClCompile Include="BandeauTexte.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Obstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AStar.h">
@@ -143,5 +144,6 @@
     <ClInclude Include="BandeauTexte.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="Obstacle.h" />
   </ItemGroup>
 </Project>

@@ -166,6 +166,11 @@ vector<Pawn>* Player::GetPawns()
 	return &pawns;
 }
 
+vector<Pawn> Player::GetPawnsDirect()
+{
+	return pawns;
+}
+
 void Player::SetGrid(Grid* grid)
 {
 	gridRef = grid;

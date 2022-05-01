@@ -37,6 +37,7 @@ public:
 	void MoveTo(Vector2 positionToGo);
 
 	InformationDisplay* GetInformations() { return informations; }
+	void SetInformations(string newInfo) { info = newInfo; }
 
 	string GetInformationOf() override;
 
@@ -69,7 +70,7 @@ public:
 
 private:
 	InformationDisplay* informations;
-
+	string info;
 	bool canMove = false;
 	
 

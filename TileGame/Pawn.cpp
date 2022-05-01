@@ -146,7 +146,7 @@ void Pawn::MoveTo(Vector2 positionToGo)
 
 string Pawn::GetInformationOf()
 {
-	string info = "Ma position: " + std::to_string(position.x) + " : " + std::to_string(position.y);
+	info = "Ma position: " + std::to_string(position.x) + " : " + std::to_string(position.y);
 	informations->SetTitle(info);
 
 	return info;

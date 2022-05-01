@@ -25,7 +25,6 @@ void Cursor::Updtate()
 	mousePos = GetMousePosition();
 	mousePosInGrid = gridRef->PosInGrid(mousePos);
 	position = mousePos;
-
 }
 
 void Cursor::Draw()
@@ -34,65 +33,85 @@ void Cursor::Draw()
 	float x = mousePosInGrid.x * gridRef->CELL_WIDTH ;
 	float y = mousePosInGrid.y * gridRef->CELL_HEIGHT ;
 
-
-
-	if (Game::instance().GetPlayer()->GetControledPawn() != nullptr)
+	if (mousePosInGrid.x >= 0 && mousePosInGrid.x < gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x < gridRef->GRID_HEIGHT)//Si on est dans la grille
 	{
-		if (!Game::instance().GetPlayer()->GetControledPawn()->haveDoActions)
-		{
-			if (mousePosInGrid.x >= 0 && mousePosInGrid.x < gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x < gridRef->GRID_HEIGHT)
+		//Cas Hover
+		vector<Pawn>* actors = Game::instance().GetPlayer()->GetPawns();
+		for (int i = 0; i < actors->size(); i++)
+		{	
+			if (actors->at(i).position.x == mousePosInGrid.x && actors->at(i).position.y == mousePosInGrid.y)
 			{
-				state = CusorState::PAWN_SELECTED_MOVE;
+				state = CusorState::PAWN_HOVERED;
+				break;
 			}
 			else
 			{
-				state = CusorState::PAWN_SELECTED_CANT_MOVE;
+				state = CusorState::SELECT;
 			}
 		}
-		else
+
+		//Cas pawn séléctionné
+		if (Game::instance().GetPlayer()->GetControledPawn() != nullptr) //Si on à un pawn de select
 		{
-			state = CusorState::PAWN_SELECTED_CANT_MOVE;
+
+			if (!Game::instance().GetPlayer()->GetControledPawn()->haveDoActions)//Si la pawn peut encore se déplacer
+			{
+				for each (Actor* act in Game::instance().GetElementsInGame())
+				{
+					if (act->position.x == mousePosInGrid.x && act->position.y == mousePosInGrid.y)
+					{
+						state = CusorState::PAWN_POS_BLOCKED;
+						break;
+					}
+					else
+					{
+						state = CusorState::PAWN_MOVEMENT;
+
+					}
+				}
+			}
+			else
+			{
+				state = CusorState::PAWN_CAN_NOT_MOVE;
+			}
 		}
-
-
+		
 	}
 	else
 	{
-		if (mousePosInGrid.x >= 0 && mousePosInGrid.x < gridRef->GRID_WITH && mousePosInGrid.y >= 0 && mousePosInGrid.x < gridRef->GRID_HEIGHT)
-		{
-			state = CusorState::SELECT;
-		}
-		else
-		{
-			state = CusorState::NOONE;
+		state = CusorState::NOONE;
+	}
 
-		}
-	}
-	for each (Actor * act in Game::instance().GetElementsInGame()) //Si le cursor est sur un élément du jeu
-	{
-		if (act->position.x == mousePosInGrid.x && act->position.y == mousePosInGrid.y)
-		{
-			state = CusorState::PAWN_SELECTED_CANT_MOVE;
-		}
-	}
+
 
 	switch (state)
 	{
 	case CusorState::NOONE:
 		break;
-	case CusorState::PAWN_SELECTED:
+	case CusorState::SELECT:
+		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, YELLOW);
 		break;
-	case CusorState::PAWN_SELECTED_MOVE:
+	case CusorState::PAWN_HOVERED:
+		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, PURPLE);
+		//Show les movements
+		break;
+
+	case CusorState::PAWN_MOVEMENT:
 		Game::instance().GetPlayer()->GetControledPawn()->DrawVisual(mousePosInGrid,false);
-		//DrawTexture(sprite, mousePosInGrid.x * gridRef->CELL_WIDTH + gridRef->GetGridPos().x, positionP.y * gridRef->CELL_HEIGHT + gridRef->GetGridPos().y, color);
+		//Draw Path
+		//Surlignage mecha
+		break;
+
+	case CusorState::PAWN_POS_BLOCKED:
+		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, RED);
+		break;
+
+	case CusorState::PAWN_CAN_NOT_MOVE:
+		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, YELLOW);
+		//Surlignage Mecha
 
 		break;
-	case CusorState::PAWN_SELECTED_CANT_MOVE:
-		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, col);
-		break;
-	case CusorState::SELECT:
-		DrawRectangleLines(x + gridRef->GetGridPos().x, y + gridRef->GetGridPos().y, gridRef->CELL_WIDTH, gridRef->CELL_HEIGHT, col);
-		break;
+
 	default:
 		break;
 	}

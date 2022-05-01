@@ -24,11 +24,11 @@ void Game::Start()
     grid.Start();
 
 //=========Setup les obstacles==========
-    Texture2D rockSprite = LoadTexture("Ressources/Obstacle.png");
-    obstacles.push_back(new Actor({ 4,4 }, rockSprite));
-    obstacles.push_back(new Actor({ 8,2 }, rockSprite));
+    Texture2D obstacleSprite = LoadTexture("Ressources/Obstacle.png");
+    obstacles.push_back(new Obstacle({ 4,4 }, obstacleSprite));
+    obstacles.push_back(new Obstacle({ 8,3 }, obstacleSprite));
 
-    for each (Actor* obstacle in obstacles)
+    for each (Obstacle * obstacle in obstacles)
     {
         obstacle->Init();
     }
@@ -75,7 +75,12 @@ void Game::Start()
     {
         informations.push_back(ennemy.GetPawns()->at(i).GetInformations());
     }
+    for each (Obstacle * obstacle in obstacles)
+    {
+        informations.push_back(obstacle->GetInformations());
+    }
 
+                    //------Forcément de Dernier----------
     //On va parcourir toutes les tiles de la grille et récupérer les informaion pour les mettre dans informations
     for (int i = 0; i < grid.grid.size(); i++)
     {
@@ -84,6 +89,7 @@ void Game::Start()
             informations.push_back(grid.grid[i][j].GetInformations());
         }
     }
+
 
 //=========Setup Turn Manager===========
     turnManager.AddPawn(&player);
